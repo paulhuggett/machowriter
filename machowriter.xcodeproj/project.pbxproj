@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DA7EA9D82189C53800CF7F47 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA7EA9D72189C53800CF7F47 /* main.cpp */; };
-		DAD02A9B21A8442C0086AADB /* lc_segment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAD02A9921A8442C0086AADB /* lc_segment.cpp */; };
-		DAD02A9E21A847180086AADB /* lc_uuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAD02A9C21A847180086AADB /* lc_uuid.cpp */; };
-		DAD02AA121A847F60086AADB /* lc_load_dylinker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAD02A9F21A847F60086AADB /* lc_load_dylinker.cpp */; };
-		DAD02AA421A84C2E0086AADB /* lc_dyld_info_only.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAD02AA221A84C2E0086AADB /* lc_dyld_info_only.cpp */; };
-		DAD02AA721A84CAB0086AADB /* lc_build_version.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAD02AA521A84CAB0086AADB /* lc_build_version.cpp */; };
-		DAD02AAA21A84D840086AADB /* lc_symtab.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAD02AA821A84D840086AADB /* lc_symtab.cpp */; };
-		DAD02AB021A84F750086AADB /* lc_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAD02AAE21A84F750086AADB /* lc_main.cpp */; };
-		DAD02AB221A85E430086AADB /* command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAD02AB121A85E430086AADB /* command.cpp */; };
-		DAD02AB521A9696A0086AADB /* lc_dysymtab.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAD02AB321A9696A0086AADB /* lc_dysymtab.cpp */; };
-		DAD02AB821AC64080086AADB /* lc_load_dylib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAD02AB621AC64080086AADB /* lc_load_dylib.cpp */; };
-		DAD02ABB21AD2F600086AADB /* lc_data_in_code.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DAD02AB921AD2F600086AADB /* lc_data_in_code.cpp */; };
+		DA3896C422933DBE0072057E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA3896A922933DBE0072057E /* main.cpp */; };
+		DA3896C522933DBE0072057E /* lc_uuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA3896AB22933DBE0072057E /* lc_uuid.cpp */; };
+		DA3896C622933DBE0072057E /* lc_main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA3896AC22933DBE0072057E /* lc_main.cpp */; };
+		DA3896C722933DBE0072057E /* lc_dysymtab.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA3896AD22933DBE0072057E /* lc_dysymtab.cpp */; };
+		DA3896C822933DBE0072057E /* command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA3896AE22933DBE0072057E /* command.cpp */; };
+		DA3896C922933DBE0072057E /* lc_symtab.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA3896AF22933DBE0072057E /* lc_symtab.cpp */; };
+		DA3896CA22933DBE0072057E /* lc_dyld_info_only.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA3896B022933DBE0072057E /* lc_dyld_info_only.cpp */; };
+		DA3896CB22933DBE0072057E /* lc_build_version.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA3896B122933DBE0072057E /* lc_build_version.cpp */; };
+		DA3896CC22933DBE0072057E /* lc_load_dylinker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA3896B222933DBE0072057E /* lc_load_dylinker.cpp */; };
+		DA3896CD22933DBE0072057E /* lc_data_in_code.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA3896B322933DBE0072057E /* lc_data_in_code.cpp */; };
+		DA3896CE22933DBE0072057E /* lc_load_dylib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA3896B422933DBE0072057E /* lc_load_dylib.cpp */; };
+		DA3896CF22933DBE0072057E /* lc_segment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DA3896B522933DBE0072057E /* lc_segment.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,32 +34,32 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		DA310DD3218CBB48007CFA35 /* util.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = util.hpp; sourceTree = "<group>"; };
+		DA3896A922933DBE0072057E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		DA3896AB22933DBE0072057E /* lc_uuid.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lc_uuid.cpp; sourceTree = "<group>"; };
+		DA3896AC22933DBE0072057E /* lc_main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lc_main.cpp; sourceTree = "<group>"; };
+		DA3896AD22933DBE0072057E /* lc_dysymtab.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lc_dysymtab.cpp; sourceTree = "<group>"; };
+		DA3896AE22933DBE0072057E /* command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = command.cpp; sourceTree = "<group>"; };
+		DA3896AF22933DBE0072057E /* lc_symtab.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lc_symtab.cpp; sourceTree = "<group>"; };
+		DA3896B022933DBE0072057E /* lc_dyld_info_only.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lc_dyld_info_only.cpp; sourceTree = "<group>"; };
+		DA3896B122933DBE0072057E /* lc_build_version.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lc_build_version.cpp; sourceTree = "<group>"; };
+		DA3896B222933DBE0072057E /* lc_load_dylinker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lc_load_dylinker.cpp; sourceTree = "<group>"; };
+		DA3896B322933DBE0072057E /* lc_data_in_code.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lc_data_in_code.cpp; sourceTree = "<group>"; };
+		DA3896B422933DBE0072057E /* lc_load_dylib.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lc_load_dylib.cpp; sourceTree = "<group>"; };
+		DA3896B522933DBE0072057E /* lc_segment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lc_segment.cpp; sourceTree = "<group>"; };
+		DA3896B722933DBE0072057E /* lc_load_dylib.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lc_load_dylib.hpp; sourceTree = "<group>"; };
+		DA3896B822933DBE0072057E /* lc_segment.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lc_segment.hpp; sourceTree = "<group>"; };
+		DA3896B922933DBE0072057E /* lc_build_version.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lc_build_version.hpp; sourceTree = "<group>"; };
+		DA3896BA22933DBE0072057E /* lc_load_dylinker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lc_load_dylinker.hpp; sourceTree = "<group>"; };
+		DA3896BB22933DBE0072057E /* lc_data_in_code.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lc_data_in_code.hpp; sourceTree = "<group>"; };
+		DA3896BC22933DBE0072057E /* version.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = version.hpp; sourceTree = "<group>"; };
+		DA3896BD22933DBE0072057E /* lc_main.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lc_main.hpp; sourceTree = "<group>"; };
+		DA3896BE22933DBE0072057E /* lc_dysymtab.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lc_dysymtab.hpp; sourceTree = "<group>"; };
+		DA3896BF22933DBE0072057E /* command.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = command.hpp; sourceTree = "<group>"; };
+		DA3896C022933DBE0072057E /* lc_symtab.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lc_symtab.hpp; sourceTree = "<group>"; };
+		DA3896C122933DBE0072057E /* lc_dyld_info_only.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lc_dyld_info_only.hpp; sourceTree = "<group>"; };
+		DA3896C222933DBE0072057E /* util.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = util.hpp; sourceTree = "<group>"; };
+		DA3896C322933DBE0072057E /* lc_uuid.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = lc_uuid.hpp; sourceTree = "<group>"; };
 		DA7EA9D42189C53800CF7F47 /* machowriter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = machowriter; sourceTree = BUILT_PRODUCTS_DIR; };
-		DA7EA9D72189C53800CF7F47 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		DAD02A9821A844060086AADB /* command.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = command.hpp; sourceTree = "<group>"; };
-		DAD02A9921A8442C0086AADB /* lc_segment.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lc_segment.cpp; sourceTree = "<group>"; };
-		DAD02A9A21A8442C0086AADB /* lc_segment.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lc_segment.hpp; sourceTree = "<group>"; };
-		DAD02A9C21A847180086AADB /* lc_uuid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lc_uuid.cpp; sourceTree = "<group>"; };
-		DAD02A9D21A847180086AADB /* lc_uuid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lc_uuid.hpp; sourceTree = "<group>"; };
-		DAD02A9F21A847F60086AADB /* lc_load_dylinker.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lc_load_dylinker.cpp; sourceTree = "<group>"; };
-		DAD02AA021A847F60086AADB /* lc_load_dylinker.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lc_load_dylinker.hpp; sourceTree = "<group>"; };
-		DAD02AA221A84C2E0086AADB /* lc_dyld_info_only.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lc_dyld_info_only.cpp; sourceTree = "<group>"; };
-		DAD02AA321A84C2E0086AADB /* lc_dyld_info_only.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lc_dyld_info_only.hpp; sourceTree = "<group>"; };
-		DAD02AA521A84CAB0086AADB /* lc_build_version.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lc_build_version.cpp; sourceTree = "<group>"; };
-		DAD02AA621A84CAB0086AADB /* lc_build_version.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lc_build_version.hpp; sourceTree = "<group>"; };
-		DAD02AA821A84D840086AADB /* lc_symtab.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lc_symtab.cpp; sourceTree = "<group>"; };
-		DAD02AA921A84D840086AADB /* lc_symtab.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lc_symtab.hpp; sourceTree = "<group>"; };
-		DAD02AAE21A84F750086AADB /* lc_main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lc_main.cpp; sourceTree = "<group>"; };
-		DAD02AAF21A84F750086AADB /* lc_main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lc_main.hpp; sourceTree = "<group>"; };
-		DAD02AB121A85E430086AADB /* command.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = command.cpp; path = machowriter/Sources/command.cpp; sourceTree = SOURCE_ROOT; };
-		DAD02AB321A9696A0086AADB /* lc_dysymtab.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = lc_dysymtab.cpp; path = machowriter/Sources/lc_dysymtab.cpp; sourceTree = SOURCE_ROOT; };
-		DAD02AB421A9696A0086AADB /* lc_dysymtab.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = lc_dysymtab.hpp; path = machowriter/Includes/lc_dysymtab.hpp; sourceTree = SOURCE_ROOT; };
-		DAD02AB621AC64080086AADB /* lc_load_dylib.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lc_load_dylib.cpp; sourceTree = "<group>"; };
-		DAD02AB721AC64080086AADB /* lc_load_dylib.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lc_load_dylib.hpp; sourceTree = "<group>"; };
-		DAD02AB921AD2F600086AADB /* lc_data_in_code.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = lc_data_in_code.cpp; sourceTree = "<group>"; };
-		DAD02ABA21AD2F600086AADB /* lc_data_in_code.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = lc_data_in_code.hpp; sourceTree = "<group>"; };
-		DAD02ABC21B009F30086AADB /* version.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = version.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,10 +73,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DA3896AA22933DBE0072057E /* sources */ = {
+			isa = PBXGroup;
+			children = (
+				DA3896AB22933DBE0072057E /* lc_uuid.cpp */,
+				DA3896AC22933DBE0072057E /* lc_main.cpp */,
+				DA3896AD22933DBE0072057E /* lc_dysymtab.cpp */,
+				DA3896AE22933DBE0072057E /* command.cpp */,
+				DA3896AF22933DBE0072057E /* lc_symtab.cpp */,
+				DA3896B022933DBE0072057E /* lc_dyld_info_only.cpp */,
+				DA3896B122933DBE0072057E /* lc_build_version.cpp */,
+				DA3896B222933DBE0072057E /* lc_load_dylinker.cpp */,
+				DA3896B322933DBE0072057E /* lc_data_in_code.cpp */,
+				DA3896B422933DBE0072057E /* lc_load_dylib.cpp */,
+				DA3896B522933DBE0072057E /* lc_segment.cpp */,
+			);
+			path = sources;
+			sourceTree = "<group>";
+		};
+		DA3896B622933DBE0072057E /* includes */ = {
+			isa = PBXGroup;
+			children = (
+				DA3896B722933DBE0072057E /* lc_load_dylib.hpp */,
+				DA3896B822933DBE0072057E /* lc_segment.hpp */,
+				DA3896B922933DBE0072057E /* lc_build_version.hpp */,
+				DA3896BA22933DBE0072057E /* lc_load_dylinker.hpp */,
+				DA3896BB22933DBE0072057E /* lc_data_in_code.hpp */,
+				DA3896BC22933DBE0072057E /* version.hpp */,
+				DA3896BD22933DBE0072057E /* lc_main.hpp */,
+				DA3896BE22933DBE0072057E /* lc_dysymtab.hpp */,
+				DA3896BF22933DBE0072057E /* command.hpp */,
+				DA3896C022933DBE0072057E /* lc_symtab.hpp */,
+				DA3896C122933DBE0072057E /* lc_dyld_info_only.hpp */,
+				DA3896C222933DBE0072057E /* util.hpp */,
+				DA3896C322933DBE0072057E /* lc_uuid.hpp */,
+			);
+			path = includes;
+			sourceTree = "<group>";
+		};
 		DA7EA9CB2189C53800CF7F47 = {
 			isa = PBXGroup;
 			children = (
-				DA7EA9D62189C53800CF7F47 /* machowriter */,
+				DA3896B622933DBE0072057E /* includes */,
+				DA3896A922933DBE0072057E /* main.cpp */,
+				DA3896AA22933DBE0072057E /* sources */,
 				DA7EA9D52189C53800CF7F47 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,54 +127,6 @@
 				DA7EA9D42189C53800CF7F47 /* machowriter */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		DA7EA9D62189C53800CF7F47 /* machowriter */ = {
-			isa = PBXGroup;
-			children = (
-				DA7EA9D72189C53800CF7F47 /* main.cpp */,
-				DAD02AAC21A84F230086AADB /* includes */,
-				DAD02AAD21A84F320086AADB /* sources */,
-			);
-			path = machowriter;
-			sourceTree = "<group>";
-		};
-		DAD02AAC21A84F230086AADB /* includes */ = {
-			isa = PBXGroup;
-			children = (
-				DAD02A9821A844060086AADB /* command.hpp */,
-				DAD02AA621A84CAB0086AADB /* lc_build_version.hpp */,
-				DAD02ABA21AD2F600086AADB /* lc_data_in_code.hpp */,
-				DAD02AA321A84C2E0086AADB /* lc_dyld_info_only.hpp */,
-				DAD02AB421A9696A0086AADB /* lc_dysymtab.hpp */,
-				DAD02AB721AC64080086AADB /* lc_load_dylib.hpp */,
-				DAD02AA021A847F60086AADB /* lc_load_dylinker.hpp */,
-				DAD02AAF21A84F750086AADB /* lc_main.hpp */,
-				DAD02A9A21A8442C0086AADB /* lc_segment.hpp */,
-				DAD02AA921A84D840086AADB /* lc_symtab.hpp */,
-				DAD02A9D21A847180086AADB /* lc_uuid.hpp */,
-				DA310DD3218CBB48007CFA35 /* util.hpp */,
-				DAD02ABC21B009F30086AADB /* version.hpp */,
-			);
-			path = includes;
-			sourceTree = "<group>";
-		};
-		DAD02AAD21A84F320086AADB /* sources */ = {
-			isa = PBXGroup;
-			children = (
-				DAD02AB121A85E430086AADB /* command.cpp */,
-				DAD02AA521A84CAB0086AADB /* lc_build_version.cpp */,
-				DAD02AB921AD2F600086AADB /* lc_data_in_code.cpp */,
-				DAD02AA221A84C2E0086AADB /* lc_dyld_info_only.cpp */,
-				DAD02AB321A9696A0086AADB /* lc_dysymtab.cpp */,
-				DAD02AB621AC64080086AADB /* lc_load_dylib.cpp */,
-				DAD02A9F21A847F60086AADB /* lc_load_dylinker.cpp */,
-				DAD02AAE21A84F750086AADB /* lc_main.cpp */,
-				DAD02A9921A8442C0086AADB /* lc_segment.cpp */,
-				DAD02AA821A84D840086AADB /* lc_symtab.cpp */,
-				DAD02A9C21A847180086AADB /* lc_uuid.cpp */,
-			);
-			path = sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,18 +186,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAD02AB821AC64080086AADB /* lc_load_dylib.cpp in Sources */,
-				DAD02AA121A847F60086AADB /* lc_load_dylinker.cpp in Sources */,
-				DAD02AB521A9696A0086AADB /* lc_dysymtab.cpp in Sources */,
-				DAD02AB221A85E430086AADB /* command.cpp in Sources */,
-				DAD02A9B21A8442C0086AADB /* lc_segment.cpp in Sources */,
-				DAD02AA721A84CAB0086AADB /* lc_build_version.cpp in Sources */,
-				DA7EA9D82189C53800CF7F47 /* main.cpp in Sources */,
-				DAD02A9E21A847180086AADB /* lc_uuid.cpp in Sources */,
-				DAD02ABB21AD2F600086AADB /* lc_data_in_code.cpp in Sources */,
-				DAD02AA421A84C2E0086AADB /* lc_dyld_info_only.cpp in Sources */,
-				DAD02AAA21A84D840086AADB /* lc_symtab.cpp in Sources */,
-				DAD02AB021A84F750086AADB /* lc_main.cpp in Sources */,
+				DA3896CE22933DBE0072057E /* lc_load_dylib.cpp in Sources */,
+				DA3896CB22933DBE0072057E /* lc_build_version.cpp in Sources */,
+				DA3896C622933DBE0072057E /* lc_main.cpp in Sources */,
+				DA3896C422933DBE0072057E /* main.cpp in Sources */,
+				DA3896C922933DBE0072057E /* lc_symtab.cpp in Sources */,
+				DA3896C522933DBE0072057E /* lc_uuid.cpp in Sources */,
+				DA3896C822933DBE0072057E /* command.cpp in Sources */,
+				DA3896CD22933DBE0072057E /* lc_data_in_code.cpp in Sources */,
+				DA3896CF22933DBE0072057E /* lc_segment.cpp in Sources */,
+				DA3896C722933DBE0072057E /* lc_dysymtab.cpp in Sources */,
+				DA3896CC22933DBE0072057E /* lc_load_dylinker.cpp in Sources */,
+				DA3896CA22933DBE0072057E /* lc_dyld_info_only.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
