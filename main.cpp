@@ -4,8 +4,6 @@
 #include <numeric>
 
 #include <fcntl.h>
-#include <mach-o/ldsyms.h>
-#include <mach-o/reloc.h>
 #include <unistd.h>
 
 #include "command.hpp"
@@ -18,6 +16,7 @@
 #include "lc_segment.hpp"
 #include "lc_symtab.hpp"
 #include "lc_uuid.hpp"
+#include "mach-o_reloc.hpp"
 
 #define BUILD_DATA_COMMAND     (0)
 #define BUILD_UUID_COMMAND     (0)
@@ -33,10 +32,10 @@ namespace {
 
     std::unique_ptr<lc_segment> build_page_zero () {
         return std::make_unique<lc_segment> (
-            SEG_PAGEZERO,
+            mach_o::seg_pagezero,
             position (0x0, std::uint64_t{1} << 32), // memory address and size of this segment
-            vm_prot_t{0},                           // maximum VM protection
-            vm_prot_t{0},                           // initial VM protection
+            mach_o::vm_prot_none,                   // maximum VM protection
+            mach_o::vm_prot_none,                   // initial VM protection
             0x00                                    // flags
         );
     }
@@ -49,10 +48,11 @@ namespace {
         // structures directly follow the 64-bit segment command and their size is reflected in
         // cmdsize.
         auto text_segment = std::make_unique<lc_text_segment> (
-            SEG_TEXT, position (0x0000000100000000, 0x0), // memory address and size of this segment
-            VM_PROT_ALL,                                  // maximum VM protection
-            VM_PROT_EXECUTE | VM_PROT_READ,               // initial VM protection
-            0x00                                          // flags
+            mach_o::seg_text,
+            position (0x0000000100000000, 0x0), // memory address and size of this segment
+            mach_o::vm_prot_all,                // maximum VM protection
+            mach_o::vm_prot_execute | mach_o::vm_prot_read, // initial VM protection
+            0x00                                            // flags
         );
 
         // 0000000000000000    pushq    %rbp
@@ -65,32 +65,31 @@ namespace {
         };
         text_segment->add_section (
             {
-                SECT_TEXT,          // name of this section
-                SEG_TEXT,           // segment this section goes in
+                mach_o::sect_text,  // name of this section
+                mach_o::seg_text,   // segment this section goes in
                 0x0000000100000000, // memory address of this section
                 0,                  // size in bytes of this section (patched up later)
                 0,                  // file offset of this section (patched up later)
                 4,                  // section alignment (power of 2)
                 0,                  // file offset of relocation entries
                 0,                  // number of relocation entries
-                S_ATTR_PURE_INSTRUCTIONS | S_ATTR_SOME_INSTRUCTIONS |
-                    S_REGULAR, // flags (section type and attributes)
-                0,             // reserved (for offset or index)
-                0,             // reserved (for count or sizeof)
-                0,             // reserved
+                mach_o::s_attr_pure_instructions | mach_o::s_attr_some_instructions |
+                    mach_o::s_regular // flags (section type and attributes)
             },
             lc_segment::contents_range (text_section_contents,
                                         text_section_contents + sizeof (text_section_contents)));
         return static_unique_pointer_cast<lc_segment> (std::move (text_segment));
     }
 
+
 #if BUILD_DATA_COMMAND
     std::unique_ptr<lc_segment> build_data () {
         auto data_segment = std::make_unique<lc_segment> (
-            SEG_DATA, position (0x0000000200000000, 0x0), // memory address and size of this segment
-            VM_PROT_ALL,                                  // maximum VM protection
-            VM_PROT_WRITE | VM_PROT_READ,                 // initial VM protection
-            0x00                                          // flags
+            macho::seg_data,
+            position (0x0000000200000000, 0x0),         // memory address and size of this segment
+            macho::vm_prot_all,                         // maximum VM protection
+            macho::vm_prot_write | macho::vm_prot_read, // initial VM protection
+            0x00                                        // flags
         );
 
         static constexpr std::uint8_t data_section_contents[4096] = {
@@ -98,15 +97,15 @@ namespace {
         };
         data_segment->add_section (
             {
-                SECT_DATA,          // name of this section
-                SEG_DATA,           // segment this section goes in
+                macho::sect_data,   // name of this section
+                macho::seg_data,    // segment this section goes in
                 0x0000000200000000, // memory address of this section
                 0,                  // size in bytes of this section (patched up later)
                 0,                  // file offset of this section (patched up later)
                 4,                  // section alignment (power of 2)
                 0,                  // file offset of relocation entries
                 0,                  // number of relocation entries
-                S_REGULAR,          // 0x80000400, // flags (section type and attributes)
+                macho::s_regular,   // 0x80000400, // flags (section type and attributes)
                 0,                  // reserved (for offset or index)
                 0,                  // reserved (for count or sizeof)
                 0,                  // reserved
@@ -119,10 +118,10 @@ namespace {
 
     std::unique_ptr<lc_segment> build_linkedit () {
         auto linkedit_segment = std::make_unique<lc_segment> (
-            SEG_LINKEDIT,
+            mach_o::seg_linkedit,
             position (0x0000000200001000, 0x0), // memory address and size of this segment
-            VM_PROT_ALL,                        // maximum VM protection
-            VM_PROT_READ,                       // initial VM protection
+            mach_o::vm_prot_all,                // maximum VM protection
+            mach_o::vm_prot_read,               // initial VM protection
             0x00                                // flags
         );
 
@@ -136,7 +135,7 @@ namespace {
         //        r_extern : 1,          /* does not include value of sym referenced */
         //        r_type : 4;            /* if not 0, machine specific relocation type */
         //};
-        static relocation_info ri;
+        static mach_o::relocation_info ri;
         ri.r_address = 0;
         ri.r_symbolnum = 0;
         ri.r_pcrel = 0;
@@ -147,18 +146,15 @@ namespace {
 
         linkedit_segment->add_section (
             {
-                "",                 // name of this section
-                SEG_LINKEDIT,       // segment this section goes in
-                0x0000000200001000, /* memory address of this section */
-                0,                  // size in bytes of this section (patched up later)
-                0,                  // file offset of this section (patched up later)
-                4,                  // section alignment (power of 2)
-                0,                  // file offset of relocation entries
-                0,                  // number of relocation entries
-                S_REGULAR,          // 0x80000400, // flags (section type and attributes)
-                0,                  // reserved (for offset or index)
-                0,                  // reserved (for count or sizeof)
-                0,                  // reserved
+                "",                   // name of this section
+                mach_o::seg_linkedit, // segment this section goes in
+                0x0000000200001000,   // memory address of this section
+                0,                    // size in bytes of this section (patched up later)
+                0,                    // file offset of this section (patched up later)
+                4,                    // section alignment (power of 2)
+                0,                    // file offset of relocation entries
+                0,                    // number of relocation entries
+                mach_o::s_regular     // 0x80000400, // flags (section type and attributes)
             },
             lc_segment::contents_range (&ri, &ri + 1));
         return linkedit_segment;
@@ -215,15 +211,15 @@ int main (int argc, char const * argv[]) {
         });
     assert (total_command_size <= type_max<std::uint32_t> ());
 
-    mach_header_64 header;
-    header.magic = MH_MAGIC_64;                                   // mach magic number identifier
-    header.cputype = CPU_TYPE_X86_64;                             // cpu specifier
-    header.cpusubtype = CPU_SUBTYPE_X86_64_ALL;                   // machine specifier
-    header.filetype = MH_EXECUTE;                                 // type of file
+    mach_o::mach_header_64 header;
+    header.magic = mach_o::mh_magic_64;                           // mach magic number identifier
+    header.cputype = mach_o::cpu_type::x86_64;                    // cpu specifier
+    header.cpusubtype = mach_o::cpu_subtype::x86_64_all;          // machine specifier
+    header.filetype = mach_o::filetype_t::execute;                // type of file
     header.ncmds = narrow_cast<std::uint32_t> (commands.size ()); // number of load commands
     header.sizeofcmds =
         narrow_cast<std::uint32_t> (total_command_size); // the size of all the load commands.
-    header.flags = MH_NOUNDEFS | MH_DYLDLINK | MH_TWOLEVEL | MH_PIE;
+    header.flags = mach_o::mh_noundefs | mach_o::mh_dyldlink | mach_o::mh_twolevel | mach_o::mh_pie;
     header.reserved = 0;
 
     write (fd, &header, sizeof (header));

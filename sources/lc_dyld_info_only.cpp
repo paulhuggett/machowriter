@@ -1,18 +1,18 @@
 #include "lc_dyld_info_only.hpp"
 
 #include <cassert>
-#include <mach-o/loader.h>
 #include <unistd.h>
 
+#include "mach-o.hpp"
+
 std::uint32_t lc_dyld_info_only::size_bytes () const noexcept {
-    return sizeof (dyld_info_command);
+    return sizeof (mach_o::dyld_info_command);
 }
 
 std::uint64_t lc_dyld_info_only::write_command (int fd, std::uint64_t offset) {
-    // see <macho/loader.h> for detailed comments.
-    dyld_info_command const cmd{
-        LC_DYLD_INFO_ONLY, // LC_DYLD_INFO or LC_DYLD_INFO_ONLY
-        sizeof (dyld_info_command),
+    mach_o::dyld_info_command const cmd{
+        mach_o::lc_dyld_info_only, // LC_DYLD_INFO or LC_DYLD_INFO_ONLY
+        sizeof (mach_o::dyld_info_command),
 
         0, // file offset to rebase info
         0, // size of rebase info

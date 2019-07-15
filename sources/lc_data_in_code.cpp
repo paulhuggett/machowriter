@@ -1,17 +1,19 @@
 #include "lc_data_in_code.hpp"
 
 #include <cassert>
-#include <mach-o/loader.h>
+#include <cstddef>
 #include <unistd.h>
 
+#include "mach-o.hpp"
+
 std::uint32_t lc_data_in_code::size_bytes () const noexcept {
-    return sizeof (dyld_info_command);
+    return sizeof (mach_o::dyld_info_command);
 }
 
 std::uint64_t lc_data_in_code::write_command (int fd, std::uint64_t offset) {
     // see <macho/loader.h> for detailed comments.
-    linkedit_data_command const cmd{
-        LC_DATA_IN_CODE, sizeof (cmd),
+    mach_o::linkedit_data_command const cmd{
+        mach_o::lc_data_in_code, sizeof (cmd),
         0, // file offset of data
         0, // file size of data in __LINKEDIT segment
     };

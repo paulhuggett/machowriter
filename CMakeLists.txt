@@ -14,6 +14,8 @@ add_executable (machowriter
     includes/lc_segment.hpp
     includes/lc_symtab.hpp
     includes/lc_uuid.hpp
+    includes/mach-o.hpp
+    includes/mach-o_reloc.hpp
     includes/util.hpp
     includes/version.hpp
 

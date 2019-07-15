@@ -1,16 +1,16 @@
 #include "lc_uuid.hpp"
 
 #include <algorithm>
-#include <mach-o/loader.h>
 #include <random>
 #include <unistd.h>
 
+#include "mach-o.hpp"
 #include "util.hpp"
 
 // size_bytes
 // ~~~~~~~~~~
 std::uint32_t lc_uuid::size_bytes () const noexcept {
-    return sizeof (uuid_command);
+    return sizeof (mach_o::uuid_command);
 }
 
 // write_command
@@ -21,8 +21,8 @@ std::uint64_t lc_uuid::write_command (int fd, std::uint64_t offset) {
         variant_octet = 8,
     };
 
-    uuid_command cmd;
-    cmd.cmd = LC_UUID;
+    mach_o::uuid_command cmd;
+    cmd.cmd = mach_o::lc_uuid;
     cmd.cmdsize = sizeof (cmd);
     std::generate (cmd.uuid, cmd.uuid + array_elements (cmd.uuid), []() {
         static std::random_device device;

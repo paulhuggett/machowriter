@@ -5,6 +5,7 @@
 #include <cassert>
 #include <limits>
 #include <type_traits>
+#include <utility>
 
 template <typename T, std::size_t Size>
 constexpr std::size_t array_elements (T (&)[Size]) noexcept {

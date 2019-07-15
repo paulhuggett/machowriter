@@ -1,15 +1,17 @@
 #include "lc_dysymtab.hpp"
 
-#include <mach-o/loader.h>
 #include <unistd.h>
 
+#include "mach-o.hpp"
+
 std::uint32_t lc_dysymtab::size_bytes () const noexcept {
-    return sizeof (dysymtab_command);
+    return sizeof (mach_o::dysymtab_command);
 }
 
 std::uint64_t lc_dysymtab::write_command (int fd, std::uint64_t offset) {
-    dysymtab_command const cmd{
-        LC_DYSYMTAB, sizeof (cmd),
+    mach_o::dysymtab_command const cmd{
+        mach_o::lc_dysymtab,
+        sizeof (cmd),
 
         0, // uint32_t ilocalsym;    /* index to local symbols */
         0, // uint32_t nlocalsym;    /* number of local symbols */

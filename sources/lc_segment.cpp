@@ -1,5 +1,7 @@
 #include "lc_segment.hpp"
 
+#include <algorithm>
+#include <cstring>
 #include <numeric>
 #include <unistd.h>
 
@@ -14,9 +16,9 @@ namespace {
 
 // ctor
 // ~~~~
-lc_segment::lc_segment (char const * segname, position vm, vm_prot_t maxprot, vm_prot_t initprot,
-                        std::uint32_t flags) noexcept {
-    v_.cmd = LC_SEGMENT_64;
+lc_segment::lc_segment (char const * segname, position vm, mach_o::vm_prot_t maxprot,
+                        mach_o::vm_prot_t initprot, std::uint32_t flags) noexcept {
+    v_.cmd = mach_o::lc_segment_64;
     v_.cmdsize = 0; // includes sizeof section_64 structs (patched up later)
     std::strncpy (v_.segname, segname, array_elements (v_.segname)); // segment name
     v_.vmaddr = vm.first;   // memory address of this segment
@@ -31,7 +33,7 @@ lc_segment::lc_segment (char const * segname, position vm, vm_prot_t maxprot, vm
 
 // add_section
 // ~~~~~~~~~~~
-auto lc_segment::add_section (section_64 const & sec, contents_range const & contents)
+auto lc_segment::add_section (mach_o::section_64 const & sec, contents_range const & contents)
     -> section_value & {
     static_assert (sizeof (v_.segname) == sizeof (sec.segname));
     assert (std::strncmp (sec.segname, v_.segname, array_elements (v_.segname)) == 0);
@@ -42,7 +44,7 @@ auto lc_segment::add_section (section_64 const & sec, contents_range const & con
 // size_bytes
 // ~~~~~~~~~~
 std::uint32_t lc_segment::size_bytes () const noexcept {
-    auto const resl = sizeof (v_) + sections_.size () * sizeof (section_64);
+    auto const resl = sizeof (v_) + sections_.size () * sizeof (mach_o::section_64);
     assert (resl % 8 == 0);
     return narrow_cast<std::uint32_t> (resl);
 }
@@ -78,7 +80,7 @@ std::uint64_t lc_segment::write_command (int fd, std::uint64_t payload_offset) {
     payload_pos_ = v_.fileoff;
     std::uint64_t vm_addr = v_.vmaddr + (payload_offset - file_off);
     for (section_value & sv : sections_) {
-        section_64 & section = sv.get ();
+        mach_o::section_64 & section = sv.get ();
         section.addr = vm_addr;
         section.offset = narrow_cast<decltype (section.offset)> (payload_offset);
         section.size = sv.contents_size ();
