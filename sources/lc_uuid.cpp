@@ -35,8 +35,8 @@ std::uint64_t lc_uuid::write_command (int fd, std::uint64_t offset) {
     cmd.uuid[variant_octet] |= 0x80; // 0b10000000;
 
     // Set version: must be 0b0100xxxx
-    cmd.uuid[version_octet] &= 0x4F;                               // 0b01001111;
-    cmd.uuid[version_octet] |= narrow_cast<std::uint8_t> (4 << 4); // a random number based UUID.
+    cmd.uuid[version_octet] &= 0x4F;               // 0b01001111;
+    cmd.uuid[version_octet] |= std::uint8_t{0x40}; // a random number based UUID.
 
     ::write (fd, &cmd, sizeof (cmd));
     return offset;
