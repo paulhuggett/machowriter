@@ -14,7 +14,7 @@ namespace {
     static constexpr char dylinker[] = "/usr/lib/dyld\0\0\0\0\0\0\0";
     static constexpr auto dylinker_size = array_elements (dylinker) - 1;
     static constexpr auto dylinker_cmdsize = sizeof (mach_o::dylinker_command) + dylinker_size;
-    static_assert (dylinker_cmdsize % 8 == 0);
+    static_assert (dylinker_cmdsize % 8 == 0, "cmdsize must be a multiple of 8");
 
 } // namespace
 

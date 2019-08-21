@@ -11,7 +11,7 @@ template <typename T, std::size_t Size>
 constexpr std::size_t array_elements (T (&)[Size]) noexcept {
     return Size;
 }
-template <typename IntType, typename = std::enable_if_t<std::is_unsigned_v<IntType>>>
+template <typename IntType, typename = typename std::enable_if<std::is_unsigned<IntType>::value>::type>
 inline constexpr IntType aligned (IntType v, unsigned align) noexcept {
     return (v + align - 1U) & static_cast<IntType> (~(align - 1U));
 }
@@ -30,10 +30,10 @@ constexpr inline T type_min () noexcept {
 
 // narrow_cast(): a searchable way to do narrowing casts of values
 template <class T, class U>
-constexpr inline T narrow_cast (U && u) noexcept {
+inline T narrow_cast (U && u) noexcept {
     assert (u <= type_max<T> ());
-    bool const a = (std::is_unsigned_v<T> == std::is_unsigned_v<U> && u >= type_min<T> ());
-    bool const b = (!std::is_unsigned_v<T> || (std::is_unsigned_v<T> && u >= 0));
+    bool const a = (std::is_unsigned<T>::value == std::is_unsigned<U>::value && u >= type_min<T> ());
+    bool const b = (!std::is_unsigned<T>::value || (std::is_unsigned<T>::value && u >= 0));
     // bool const c = (0);
     assert (a || b);
     return static_cast<T> (std::forward<U> (u));
@@ -144,7 +144,7 @@ inline constexpr bool is_power_of_two (Ty n) noexcept {
 /// \returns  The value that must be added to \p v in order that it has the alignment given by
 /// \p align.
 template <typename Ty>
-inline constexpr Ty calc_alignment (Ty v, std::size_t align) noexcept {
+inline Ty calc_alignment (Ty v, std::size_t align) noexcept {
     assert (is_power_of_two (align));
     return (align == 0U) ? 0U : ((v + align - 1U) & ~(align - 1U)) - v;
 }

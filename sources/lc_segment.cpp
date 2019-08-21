@@ -13,7 +13,7 @@
 namespace {
 
     constexpr std::uint64_t page_size = 0x1000;
-    inline constexpr std::uint64_t aligned (std::uint64_t v) noexcept {
+    inline std::uint64_t aligned (std::uint64_t v) noexcept {
         return v + calc_alignment (v, page_size);
     }
 
@@ -40,7 +40,7 @@ lc_segment::lc_segment (char const * segname, position vm, mach_o::vm_prot_t max
 // ~~~~~~~~~~~
 auto lc_segment::add_section (mach_o::section_64 const & sec, contents_range const & contents)
     -> section_value & {
-    static_assert (sizeof (v_.segname) == sizeof (sec.segname));
+    STATIC_ASSERT (sizeof (v_.segname) == sizeof (sec.segname));
     assert (std::strncmp (sec.segname, v_.segname, array_elements (v_.segname)) == 0);
     sections_.emplace_back (sec, contents);
     return sections_.back ();
@@ -107,8 +107,8 @@ void lc_segment::write_payload (int fd) {
         return;
     }
 
-    if (std::uint64_t const x = payload_pos_.value ()) {
-        lseek (fd, static_cast<off_t> (x), SEEK_SET);
+    if (have_payload_pos_) {
+        ::lseek (fd, static_cast<off_t> (payload_pos_), SEEK_SET);
     }
     for (auto const & sv : sections_) {
         ::write (fd, sv.contents ().first, sv.contents_size ());
@@ -124,12 +124,13 @@ std::uint64_t lc_segment::file_offset (std::uint64_t offset) const noexcept {
 
 
 void lc_segment::section_value::set_offset (std::uint64_t offset) noexcept {
+    has_offset_ = true;
     offset_ = offset;
 }
 
 std::uint64_t lc_segment::section_value::get_offset () const noexcept {
-    assert (offset_.has_value ());
-    auto const resl = offset_.value ();
+    assert (has_offset_);
+    auto const resl = offset_;
     assert (resl >= 0);
     return resl;
 }
@@ -138,7 +139,7 @@ std::size_t lc_segment::section_value::contents_size () const noexcept {
     auto const resl = std::distance (static_cast<std::uint8_t const *> (contents_.first),
                                      static_cast<std::uint8_t const *> (contents_.second));
     assert (resl >= 0);
-    return narrow_cast<std::size_t> (static_cast<std::make_unsigned_t<decltype (resl)>> (resl));
+    return narrow_cast<std::size_t> (static_cast<std::make_unsigned<decltype (resl)>::type> (resl));
 }
 
 

@@ -33,7 +33,7 @@ add_executable (machowriter
 )
 target_include_directories (machowriter PRIVATE ./includes)
 set_target_properties (machowriter PROPERTIES
-    CXX_STANDARD 17
+    CXX_STANDARD 11
     CXX_EXTENSIONS Off
 )
 if (MSVC)

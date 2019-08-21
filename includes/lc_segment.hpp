@@ -2,7 +2,6 @@
 #define LC_SEGMENT_HPP
 
 #include <cstdlib>
-#include <optional>
 #include <utility>
 #include <vector>
 
@@ -35,7 +34,9 @@ public:
     private:
         mach_o::section_64 s_;
         contents_range contents_;
-        std::optional<std::uint64_t> offset_;
+        // TODO: eliminate and use std::optional<std::uint64_t> offset_.
+        bool has_offset_ = false;
+        std::uint64_t offset_ = 0;
     };
 
     explicit lc_segment (mach_o::segment_command_64 const & v) noexcept
@@ -65,7 +66,9 @@ private:
     std::size_t payload_size () const noexcept;
 
     mach_o::segment_command_64 v_;
-    std::optional<std::uint64_t> payload_pos_;
+    // TODO: eliminate and use std::optional<std::uint64_t> payload_pos_.
+    bool have_payload_pos_ = false;
+    std::uint64_t payload_pos_ = 0;
     std::vector<section_value> sections_;
 };
 

@@ -10,6 +10,8 @@
 #    define CHECK 1
 #endif
 
+#define STATIC_ASSERT(x) static_assert (x, #x)
+
 namespace mach_o {
 
     using cpu_threadtype_t = std::uint32_t;
@@ -53,22 +55,22 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    static_assert (static_cast<std::uint32_t> (cpu_type::any) == CPU_TYPE_ANY);
-    static_assert (static_cast<std::uint32_t> (cpu_type::vax) == CPU_TYPE_VAX);
-    static_assert (static_cast<std::uint32_t> (cpu_type::mc680x0) == CPU_TYPE_MC680x0);
-    static_assert (static_cast<std::uint32_t> (cpu_type::x86) == CPU_TYPE_X86);
-    static_assert (static_cast<std::uint32_t> (cpu_type::i386) == CPU_TYPE_I386);
-    static_assert (static_cast<std::uint32_t> (cpu_type::x86_64) == CPU_TYPE_X86_64);
-    static_assert (static_cast<std::uint32_t> (cpu_type::mc98000) == CPU_TYPE_MC98000);
-    static_assert (static_cast<std::uint32_t> (cpu_type::hppa) == CPU_TYPE_HPPA);
-    static_assert (static_cast<std::uint32_t> (cpu_type::arm) == CPU_TYPE_ARM);
-    static_assert (static_cast<std::uint32_t> (cpu_type::arm64) == CPU_TYPE_ARM64);
-    static_assert (static_cast<std::uint32_t> (cpu_type::arm64_32) == CPU_TYPE_ARM64_32);
-    static_assert (static_cast<std::uint32_t> (cpu_type::mc88000) == CPU_TYPE_MC88000);
-    static_assert (static_cast<std::uint32_t> (cpu_type::sparc) == CPU_TYPE_SPARC);
-    static_assert (static_cast<std::uint32_t> (cpu_type::i860) == CPU_TYPE_I860);
-    static_assert (static_cast<std::uint32_t> (cpu_type::powerpc) == CPU_TYPE_POWERPC);
-    static_assert (static_cast<std::uint32_t> (cpu_type::powerpc64) == CPU_TYPE_POWERPC64);
+    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::any) == CPU_TYPE_ANY);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::vax) == CPU_TYPE_VAX);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::mc680x0) == CPU_TYPE_MC680x0);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::x86) == CPU_TYPE_X86);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::i386) == CPU_TYPE_I386);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::x86_64) == CPU_TYPE_X86_64);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::mc98000) == CPU_TYPE_MC98000);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::hppa) == CPU_TYPE_HPPA);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::arm) == CPU_TYPE_ARM);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::arm64) == CPU_TYPE_ARM64);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::arm64_32) == CPU_TYPE_ARM64_32);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::mc88000) == CPU_TYPE_MC88000);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::sparc) == CPU_TYPE_SPARC);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::i860) == CPU_TYPE_I860);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::powerpc) == CPU_TYPE_POWERPC);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::powerpc64) == CPU_TYPE_POWERPC64);
 #endif // CHECK
 
     enum class cpu_subtype : std::uint32_t {
@@ -80,10 +82,10 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    static_assert (static_cast<std::uint32_t> (cpu_subtype::x86_all) == CPU_SUBTYPE_X86_ALL);
-    static_assert (static_cast<std::uint32_t> (cpu_subtype::x86_64_all) == CPU_SUBTYPE_X86_64_ALL);
-    static_assert (static_cast<std::uint32_t> (cpu_subtype::x86_arch1) == CPU_SUBTYPE_X86_ARCH1);
-    static_assert (static_cast<std::uint32_t> (cpu_subtype::x86_64_h) == CPU_SUBTYPE_X86_64_H);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_subtype::x86_all) == CPU_SUBTYPE_X86_ALL);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_subtype::x86_64_all) == CPU_SUBTYPE_X86_64_ALL);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_subtype::x86_arch1) == CPU_SUBTYPE_X86_ARCH1);
+     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_subtype::x86_64_h) == CPU_SUBTYPE_X86_64_H);
 #endif // CHECK
     /*
      * The layout of the file depends on the filetype.  For all but the MH_OBJECT
@@ -121,17 +123,17 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    static_assert (static_cast<std::uint32_t> (filetype_t::object) == MH_OBJECT);
-    static_assert (static_cast<std::uint32_t> (filetype_t::execute) == MH_EXECUTE);
-    static_assert (static_cast<std::uint32_t> (filetype_t::fvmlib) == MH_FVMLIB);
-    static_assert (static_cast<std::uint32_t> (filetype_t::core) == MH_CORE);
-    static_assert (static_cast<std::uint32_t> (filetype_t::preload) == MH_PRELOAD);
-    static_assert (static_cast<std::uint32_t> (filetype_t::dylib) == MH_DYLIB);
-    static_assert (static_cast<std::uint32_t> (filetype_t::dylinker) == MH_DYLINKER);
-    static_assert (static_cast<std::uint32_t> (filetype_t::bundle) == MH_BUNDLE);
-    static_assert (static_cast<std::uint32_t> (filetype_t::dylib_stub) == MH_DYLIB_STUB);
-    static_assert (static_cast<std::uint32_t> (filetype_t::dsym) == MH_DSYM);
-    static_assert (static_cast<std::uint32_t> (filetype_t::kext_bundle) == MH_KEXT_BUNDLE);
+     STATIC_ASSERT (static_cast<std::uint32_t> (filetype_t::object) == MH_OBJECT);
+     STATIC_ASSERT (static_cast<std::uint32_t> (filetype_t::execute) == MH_EXECUTE);
+     STATIC_ASSERT (static_cast<std::uint32_t> (filetype_t::fvmlib) == MH_FVMLIB);
+     STATIC_ASSERT (static_cast<std::uint32_t> (filetype_t::core) == MH_CORE);
+     STATIC_ASSERT (static_cast<std::uint32_t> (filetype_t::preload) == MH_PRELOAD);
+     STATIC_ASSERT (static_cast<std::uint32_t> (filetype_t::dylib) == MH_DYLIB);
+     STATIC_ASSERT (static_cast<std::uint32_t> (filetype_t::dylinker) == MH_DYLINKER);
+     STATIC_ASSERT (static_cast<std::uint32_t> (filetype_t::bundle) == MH_BUNDLE);
+     STATIC_ASSERT (static_cast<std::uint32_t> (filetype_t::dylib_stub) == MH_DYLIB_STUB);
+     STATIC_ASSERT (static_cast<std::uint32_t> (filetype_t::dsym) == MH_DSYM);
+     STATIC_ASSERT (static_cast<std::uint32_t> (filetype_t::kext_bundle) == MH_KEXT_BUNDLE);
 #endif // CHECK
 
     // Constants for the flags field of the mach_header
@@ -207,34 +209,34 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    static_assert (mh_noundefs == MH_NOUNDEFS);
-    static_assert (mh_incrlink == MH_INCRLINK);
-    static_assert (mh_dyldlink == MH_DYLDLINK);
-    static_assert (mh_bindatload == MH_BINDATLOAD);
-    static_assert (mh_prebound == MH_PREBOUND);
-    static_assert (mh_split_segs == MH_SPLIT_SEGS);
-    static_assert (mh_lazy_init == MH_LAZY_INIT);
-    static_assert (mh_twolevel == MH_TWOLEVEL);
-    static_assert (mh_force_flat == MH_FORCE_FLAT);
-    static_assert (mh_nomultidefs == MH_NOMULTIDEFS);
-    static_assert (mh_nofixprebinding == MH_NOFIXPREBINDING);
-    static_assert (mh_prebindable == MH_PREBINDABLE);
-    static_assert (mh_allmodsbound == MH_ALLMODSBOUND);
-    static_assert (mh_subsections_via_symbols == MH_SUBSECTIONS_VIA_SYMBOLS);
-    static_assert (mh_canonical == MH_CANONICAL);
-    static_assert (mh_weak_defines == MH_WEAK_DEFINES);
-    static_assert (mh_binds_to_weak == MH_BINDS_TO_WEAK);
-    static_assert (mh_allow_stack_execution == MH_ALLOW_STACK_EXECUTION);
-    static_assert (mh_root_safe == MH_ROOT_SAFE);
-    static_assert (mh_setuid_safe == MH_SETUID_SAFE);
-    static_assert (mh_no_reexported_dylibs == MH_NO_REEXPORTED_DYLIBS);
-    static_assert (mh_pie == MH_PIE);
-    static_assert (mh_dead_strippable_dylib == MH_DEAD_STRIPPABLE_DYLIB);
-    static_assert (mh_has_tlv_descriptors == MH_HAS_TLV_DESCRIPTORS);
-    static_assert (mh_no_heap_execution == MH_NO_HEAP_EXECUTION);
-    static_assert (mh_app_extension_safe == MH_APP_EXTENSION_SAFE);
-    static_assert (mh_nlist_outofsync_with_dyldinfo == MH_NLIST_OUTOFSYNC_WITH_DYLDINFO);
-    static_assert (mh_sim_support == MH_SIM_SUPPORT);
+     STATIC_ASSERT (mh_noundefs == MH_NOUNDEFS);
+     STATIC_ASSERT (mh_incrlink == MH_INCRLINK);
+     STATIC_ASSERT (mh_dyldlink == MH_DYLDLINK);
+     STATIC_ASSERT (mh_bindatload == MH_BINDATLOAD);
+     STATIC_ASSERT (mh_prebound == MH_PREBOUND);
+     STATIC_ASSERT (mh_split_segs == MH_SPLIT_SEGS);
+     STATIC_ASSERT (mh_lazy_init == MH_LAZY_INIT);
+     STATIC_ASSERT (mh_twolevel == MH_TWOLEVEL);
+     STATIC_ASSERT (mh_force_flat == MH_FORCE_FLAT);
+     STATIC_ASSERT (mh_nomultidefs == MH_NOMULTIDEFS);
+     STATIC_ASSERT (mh_nofixprebinding == MH_NOFIXPREBINDING);
+     STATIC_ASSERT (mh_prebindable == MH_PREBINDABLE);
+     STATIC_ASSERT (mh_allmodsbound == MH_ALLMODSBOUND);
+     STATIC_ASSERT (mh_subsections_via_symbols == MH_SUBSECTIONS_VIA_SYMBOLS);
+     STATIC_ASSERT (mh_canonical == MH_CANONICAL);
+     STATIC_ASSERT (mh_weak_defines == MH_WEAK_DEFINES);
+     STATIC_ASSERT (mh_binds_to_weak == MH_BINDS_TO_WEAK);
+     STATIC_ASSERT (mh_allow_stack_execution == MH_ALLOW_STACK_EXECUTION);
+     STATIC_ASSERT (mh_root_safe == MH_ROOT_SAFE);
+     STATIC_ASSERT (mh_setuid_safe == MH_SETUID_SAFE);
+     STATIC_ASSERT (mh_no_reexported_dylibs == MH_NO_REEXPORTED_DYLIBS);
+     STATIC_ASSERT (mh_pie == MH_PIE);
+     STATIC_ASSERT (mh_dead_strippable_dylib == MH_DEAD_STRIPPABLE_DYLIB);
+     STATIC_ASSERT (mh_has_tlv_descriptors == MH_HAS_TLV_DESCRIPTORS);
+     STATIC_ASSERT (mh_no_heap_execution == MH_NO_HEAP_EXECUTION);
+     STATIC_ASSERT (mh_app_extension_safe == MH_APP_EXTENSION_SAFE);
+     STATIC_ASSERT (mh_nlist_outofsync_with_dyldinfo == MH_NLIST_OUTOFSYNC_WITH_DYLDINFO);
+     STATIC_ASSERT (mh_sim_support == MH_SIM_SUPPORT);
 #endif // CHECK
 
     // The 64-bit mach header appears at the very beginning of object files for
@@ -251,27 +253,27 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    static_assert (sizeof (mach_header_64) == sizeof (::mach_header_64));
-    static_assert (offsetof (mach_header_64, magic) == offsetof (::mach_header_64, magic));
-    static_assert (offsetof (mach_header_64, cputype) == offsetof (::mach_header_64, cputype));
-    static_assert (offsetof (mach_header_64, cpusubtype) ==
+     STATIC_ASSERT (sizeof (mach_header_64) == sizeof (::mach_header_64));
+     STATIC_ASSERT (offsetof (mach_header_64, magic) == offsetof (::mach_header_64, magic));
+     STATIC_ASSERT (offsetof (mach_header_64, cputype) == offsetof (::mach_header_64, cputype));
+     STATIC_ASSERT (offsetof (mach_header_64, cpusubtype) ==
                    offsetof (::mach_header_64, cpusubtype));
-    static_assert (offsetof (mach_header_64, filetype) == offsetof (::mach_header_64, filetype));
-    static_assert (offsetof (mach_header_64, ncmds) == offsetof (::mach_header_64, ncmds));
-    static_assert (offsetof (mach_header_64, sizeofcmds) ==
+     STATIC_ASSERT (offsetof (mach_header_64, filetype) == offsetof (::mach_header_64, filetype));
+     STATIC_ASSERT (offsetof (mach_header_64, ncmds) == offsetof (::mach_header_64, ncmds));
+     STATIC_ASSERT (offsetof (mach_header_64, sizeofcmds) ==
                    offsetof (::mach_header_64, sizeofcmds));
-    static_assert (offsetof (mach_header_64, flags) == offsetof (::mach_header_64, flags));
-    static_assert (offsetof (mach_header_64, reserved) == offsetof (::mach_header_64, reserved));
+     STATIC_ASSERT (offsetof (mach_header_64, flags) == offsetof (::mach_header_64, flags));
+     STATIC_ASSERT (offsetof (mach_header_64, reserved) == offsetof (::mach_header_64, reserved));
 #else
-    static_assert (sizeof (mach_header_64) == 32);
-    static_assert (offsetof (mach_header_64, magic) == 0);
-    static_assert (offsetof (mach_header_64, cputype) == 4);
-    static_assert (offsetof (mach_header_64, cpusubtype) == 8);
-    static_assert (offsetof (mach_header_64, filetype) == 12);
-    static_assert (offsetof (mach_header_64, ncmds) == 16);
-    static_assert (offsetof (mach_header_64, sizeofcmds) == 20);
-    static_assert (offsetof (mach_header_64, flags) == 24);
-    static_assert (offsetof (mach_header_64, reserved) == 28);
+     STATIC_ASSERT (sizeof (mach_header_64) == 32);
+     STATIC_ASSERT (offsetof (mach_header_64, magic) == 0);
+     STATIC_ASSERT (offsetof (mach_header_64, cputype) == 4);
+     STATIC_ASSERT (offsetof (mach_header_64, cpusubtype) == 8);
+     STATIC_ASSERT (offsetof (mach_header_64, filetype) == 12);
+     STATIC_ASSERT (offsetof (mach_header_64, ncmds) == 16);
+     STATIC_ASSERT (offsetof (mach_header_64, sizeofcmds) == 20);
+     STATIC_ASSERT (offsetof (mach_header_64, flags) == 24);
+     STATIC_ASSERT (offsetof (mach_header_64, reserved) == 28);
 #endif // CHECK
 
     // Constant for the magic field of the mach_header_64 (64-bit architectures)
@@ -279,8 +281,8 @@ namespace mach_o {
     constexpr std::uint32_t mh_cigam_64 = 0xcffaedfe; // NXSwapInt(MH_MAGIC_64)
 
 #ifdef CHECK
-    static_assert (mh_magic_64 == MH_MAGIC_64);
-    static_assert (mh_cigam_64 == MH_CIGAM_64);
+     STATIC_ASSERT (mh_magic_64 == MH_MAGIC_64);
+     STATIC_ASSERT (mh_cigam_64 == MH_CIGAM_64);
 #endif
 
 
@@ -402,44 +404,44 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    static_assert (sizeof (dyld_info_command) == sizeof (::dyld_info_command));
-    static_assert (offsetof (dyld_info_command, cmd) == offsetof (::dyld_info_command, cmd));
-    static_assert (offsetof (dyld_info_command, cmdsize) ==
+     STATIC_ASSERT (sizeof (dyld_info_command) == sizeof (::dyld_info_command));
+     STATIC_ASSERT (offsetof (dyld_info_command, cmd) == offsetof (::dyld_info_command, cmd));
+     STATIC_ASSERT (offsetof (dyld_info_command, cmdsize) ==
                    offsetof (::dyld_info_command, cmdsize));
-    static_assert (offsetof (dyld_info_command, rebase_off) ==
+     STATIC_ASSERT (offsetof (dyld_info_command, rebase_off) ==
                    offsetof (::dyld_info_command, rebase_off));
-    static_assert (offsetof (dyld_info_command, rebase_size) ==
+     STATIC_ASSERT (offsetof (dyld_info_command, rebase_size) ==
                    offsetof (::dyld_info_command, rebase_size));
-    static_assert (offsetof (dyld_info_command, bind_off) ==
+     STATIC_ASSERT (offsetof (dyld_info_command, bind_off) ==
                    offsetof (::dyld_info_command, bind_off));
-    static_assert (offsetof (dyld_info_command, bind_size) ==
+     STATIC_ASSERT (offsetof (dyld_info_command, bind_size) ==
                    offsetof (::dyld_info_command, bind_size));
-    static_assert (offsetof (dyld_info_command, weak_bind_off) ==
+     STATIC_ASSERT (offsetof (dyld_info_command, weak_bind_off) ==
                    offsetof (::dyld_info_command, weak_bind_off));
-    static_assert (offsetof (dyld_info_command, weak_bind_size) ==
+     STATIC_ASSERT (offsetof (dyld_info_command, weak_bind_size) ==
                    offsetof (::dyld_info_command, weak_bind_size));
-    static_assert (offsetof (dyld_info_command, lazy_bind_off) ==
+     STATIC_ASSERT (offsetof (dyld_info_command, lazy_bind_off) ==
                    offsetof (::dyld_info_command, lazy_bind_off));
-    static_assert (offsetof (dyld_info_command, lazy_bind_size) ==
+     STATIC_ASSERT (offsetof (dyld_info_command, lazy_bind_size) ==
                    offsetof (::dyld_info_command, lazy_bind_size));
-    static_assert (offsetof (dyld_info_command, export_off) ==
+     STATIC_ASSERT (offsetof (dyld_info_command, export_off) ==
                    offsetof (::dyld_info_command, export_off));
-    static_assert (offsetof (dyld_info_command, export_size) ==
+     STATIC_ASSERT (offsetof (dyld_info_command, export_size) ==
                    offsetof (::dyld_info_command, export_size));
 #else
-    static_assert (sizeof (dyld_info_command) == 48);
-    static_assert (offsetof (dyld_info_command, cmd) == 0);
-    static_assert (offsetof (dyld_info_command, cmdsize) == 4);
-    static_assert (offsetof (dyld_info_command, rebase_off) == 8);
-    static_assert (offsetof (dyld_info_command, rebase_size) == 12);
-    static_assert (offsetof (dyld_info_command, bind_off) == 16);
-    static_assert (offsetof (dyld_info_command, bind_size) == 20);
-    static_assert (offsetof (dyld_info_command, weak_bind_off) == 24);
-    static_assert (offsetof (dyld_info_command, weak_bind_size) == 28);
-    static_assert (offsetof (dyld_info_command, lazy_bind_off) == 32);
-    static_assert (offsetof (dyld_info_command, lazy_bind_size) == 36);
-    static_assert (offsetof (dyld_info_command, export_off) == 40);
-    static_assert (offsetof (dyld_info_command, export_size) == 44);
+     STATIC_ASSERT (sizeof (dyld_info_command) == 48);
+     STATIC_ASSERT (offsetof (dyld_info_command, cmd) == 0);
+     STATIC_ASSERT (offsetof (dyld_info_command, cmdsize) == 4);
+     STATIC_ASSERT (offsetof (dyld_info_command, rebase_off) == 8);
+     STATIC_ASSERT (offsetof (dyld_info_command, rebase_size) == 12);
+     STATIC_ASSERT (offsetof (dyld_info_command, bind_off) == 16);
+     STATIC_ASSERT (offsetof (dyld_info_command, bind_size) == 20);
+     STATIC_ASSERT (offsetof (dyld_info_command, weak_bind_off) == 24);
+     STATIC_ASSERT (offsetof (dyld_info_command, weak_bind_size) == 28);
+     STATIC_ASSERT (offsetof (dyld_info_command, lazy_bind_off) == 32);
+     STATIC_ASSERT (offsetof (dyld_info_command, lazy_bind_size) == 36);
+     STATIC_ASSERT (offsetof (dyld_info_command, export_off) == 40);
+     STATIC_ASSERT (offsetof (dyld_info_command, export_size) == 44);
 #endif
 
 
@@ -456,15 +458,15 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    static_assert (sizeof (dylinker_command) == sizeof (::dylinker_command));
-    static_assert (offsetof (dylinker_command, cmd) == offsetof (::dylinker_command, cmd));
-    static_assert (offsetof (dylinker_command, cmdsize) == offsetof (::dylinker_command, cmdsize));
-    static_assert (offsetof (dylinker_command, name) == offsetof (::dylinker_command, name));
+     STATIC_ASSERT (sizeof (dylinker_command) == sizeof (::dylinker_command));
+     STATIC_ASSERT (offsetof (dylinker_command, cmd) == offsetof (::dylinker_command, cmd));
+     STATIC_ASSERT (offsetof (dylinker_command, cmdsize) == offsetof (::dylinker_command, cmdsize));
+     STATIC_ASSERT (offsetof (dylinker_command, name) == offsetof (::dylinker_command, name));
 #else
-    static_assert (sizeof (dylinker_command) == 12);
-    static_assert (offsetof (dylinker_command, cmd) == 0);
-    static_assert (offsetof (dylinker_command, cmdsize) == 4);
-    static_assert (offsetof (dylinker_command, name) == 8);
+     STATIC_ASSERT (sizeof (dylinker_command) == 12);
+     STATIC_ASSERT (offsetof (dylinker_command, cmd) == 0);
+     STATIC_ASSERT (offsetof (dylinker_command, cmdsize) == 4);
+     STATIC_ASSERT (offsetof (dylinker_command, name) == 8);
 #endif // CHECK
 
 
@@ -606,21 +608,21 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    static_assert (sizeof (linkedit_data_command) == sizeof (::linkedit_data_command));
-    static_assert (offsetof (linkedit_data_command, cmd) ==
+     STATIC_ASSERT (sizeof (linkedit_data_command) == sizeof (::linkedit_data_command));
+     STATIC_ASSERT (offsetof (linkedit_data_command, cmd) ==
                    offsetof (::linkedit_data_command, cmd));
-    static_assert (offsetof (linkedit_data_command, cmdsize) ==
+     STATIC_ASSERT (offsetof (linkedit_data_command, cmdsize) ==
                    offsetof (::linkedit_data_command, cmdsize));
-    static_assert (offsetof (linkedit_data_command, dataoff) ==
+     STATIC_ASSERT (offsetof (linkedit_data_command, dataoff) ==
                    offsetof (::linkedit_data_command, dataoff));
-    static_assert (offsetof (linkedit_data_command, datasize) ==
+     STATIC_ASSERT (offsetof (linkedit_data_command, datasize) ==
                    offsetof (::linkedit_data_command, datasize));
 #else
-    static_assert (sizeof (linkedit_data_command) == 16);
-    static_assert (offsetof (linkedit_data_command, cmd) == 0);
-    static_assert (offsetof (linkedit_data_command, cmdsize) == 4);
-    static_assert (offsetof (linkedit_data_command, dataoff) == 8);
-    static_assert (offsetof (linkedit_data_command, datasize) == 12);
+     STATIC_ASSERT (sizeof (linkedit_data_command) == 16);
+     STATIC_ASSERT (offsetof (linkedit_data_command, cmd) == 0);
+     STATIC_ASSERT (offsetof (linkedit_data_command, cmdsize) == 4);
+     STATIC_ASSERT (offsetof (linkedit_data_command, dataoff) == 8);
+     STATIC_ASSERT (offsetof (linkedit_data_command, datasize) == 12);
 #endif // CHECK
 
 
@@ -637,27 +639,27 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    static_assert (sizeof (build_version_command) == sizeof (::build_version_command));
-    static_assert (offsetof (build_version_command, cmd) ==
+     STATIC_ASSERT (sizeof (build_version_command) == sizeof (::build_version_command));
+     STATIC_ASSERT (offsetof (build_version_command, cmd) ==
                    offsetof (::build_version_command, cmd));
-    static_assert (offsetof (build_version_command, cmdsize) ==
+     STATIC_ASSERT (offsetof (build_version_command, cmdsize) ==
                    offsetof (::build_version_command, cmdsize));
-    static_assert (offsetof (build_version_command, platform) ==
+     STATIC_ASSERT (offsetof (build_version_command, platform) ==
                    offsetof (::build_version_command, platform));
-    static_assert (offsetof (build_version_command, minos) ==
+     STATIC_ASSERT (offsetof (build_version_command, minos) ==
                    offsetof (::build_version_command, minos));
-    static_assert (offsetof (build_version_command, sdk) ==
+     STATIC_ASSERT (offsetof (build_version_command, sdk) ==
                    offsetof (::build_version_command, sdk));
-    static_assert (offsetof (build_version_command, ntools) ==
+     STATIC_ASSERT (offsetof (build_version_command, ntools) ==
                    offsetof (::build_version_command, ntools));
 #else
-    static_assert (sizeof (build_version_command) == 24);
-    static_assert (offsetof (build_version_command, cmd) == 0);
-    static_assert (offsetof (build_version_command, cmdsize) == 4);
-    static_assert (offsetof (build_version_command, platform) == 8);
-    static_assert (offsetof (build_version_command, minos) == 12);
-    static_assert (offsetof (build_version_command, sdk) == 16);
-    static_assert (offsetof (build_version_command, ntools) == 20);
+     STATIC_ASSERT (sizeof (build_version_command) == 24);
+     STATIC_ASSERT (offsetof (build_version_command, cmd) == 0);
+     STATIC_ASSERT (offsetof (build_version_command, cmdsize) == 4);
+     STATIC_ASSERT (offsetof (build_version_command, platform) == 8);
+     STATIC_ASSERT (offsetof (build_version_command, minos) == 12);
+     STATIC_ASSERT (offsetof (build_version_command, sdk) == 16);
+     STATIC_ASSERT (offsetof (build_version_command, ntools) == 20);
 #endif // CHECK
 
 
@@ -667,14 +669,14 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    static_assert (sizeof (build_tool_version) == sizeof (::build_tool_version));
-    static_assert (offsetof (build_tool_version, tool) == offsetof (::build_tool_version, tool));
-    static_assert (offsetof (build_tool_version, version) ==
+     STATIC_ASSERT (sizeof (build_tool_version) == sizeof (::build_tool_version));
+     STATIC_ASSERT (offsetof (build_tool_version, tool) == offsetof (::build_tool_version, tool));
+     STATIC_ASSERT (offsetof (build_tool_version, version) ==
                    offsetof (::build_tool_version, version));
 #else
-    static_assert (sizeof (build_tool_version) == 8);
-    static_assert (offsetof (build_tool_version, tool) == 0);
-    static_assert (offsetof (build_tool_version, version) == 4);
+     STATIC_ASSERT (sizeof (build_tool_version) == 8);
+     STATIC_ASSERT (offsetof (build_tool_version, tool) == 0);
+     STATIC_ASSERT (offsetof (build_tool_version, version) == 4);
 #endif // CHECK
 
 
@@ -692,18 +694,18 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    static_assert (sizeof (dylib) == sizeof (::dylib));
-    static_assert (offsetof (dylib, name) == offsetof (::dylib, name));
-    static_assert (offsetof (dylib, timestamp) == offsetof (::dylib, timestamp));
-    static_assert (offsetof (dylib, current_version) == offsetof (::dylib, current_version));
-    static_assert (offsetof (dylib, compatibility_version) ==
+     STATIC_ASSERT (sizeof (dylib) == sizeof (::dylib));
+     STATIC_ASSERT (offsetof (dylib, name) == offsetof (::dylib, name));
+     STATIC_ASSERT (offsetof (dylib, timestamp) == offsetof (::dylib, timestamp));
+     STATIC_ASSERT (offsetof (dylib, current_version) == offsetof (::dylib, current_version));
+     STATIC_ASSERT (offsetof (dylib, compatibility_version) ==
                    offsetof (::dylib, compatibility_version));
 #else
-    static_assert (sizeof (dylib) == 16);
-    static_assert (offsetof (dylib, name) == 0);
-    static_assert (offsetof (dylib, timestamp) == 4);
-    static_assert (offsetof (dylib, current_version) == 8);
-    static_assert (offsetof (dylib, compatibility_version) == 12);
+     STATIC_ASSERT (sizeof (dylib) == 16);
+     STATIC_ASSERT (offsetof (dylib, name) == 0);
+     STATIC_ASSERT (offsetof (dylib, timestamp) == 4);
+     STATIC_ASSERT (offsetof (dylib, current_version) == 8);
+     STATIC_ASSERT (offsetof (dylib, compatibility_version) == 12);
 #endif // CHECK
 
 
@@ -719,15 +721,15 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    static_assert (sizeof (dylib_command) == sizeof (::dylib_command));
-    static_assert (offsetof (dylib_command, cmd) == offsetof (::dylib_command, cmd));
-    static_assert (offsetof (dylib_command, cmdsize) == offsetof (::dylib_command, cmdsize));
-    static_assert (offsetof (dylib_command, dylib) == offsetof (::dylib_command, dylib));
+     STATIC_ASSERT (sizeof (dylib_command) == sizeof (::dylib_command));
+     STATIC_ASSERT (offsetof (dylib_command, cmd) == offsetof (::dylib_command, cmd));
+     STATIC_ASSERT (offsetof (dylib_command, cmdsize) == offsetof (::dylib_command, cmdsize));
+     STATIC_ASSERT (offsetof (dylib_command, dylib) == offsetof (::dylib_command, dylib));
 #else
-    static_assert (sizeof (dylib_command) == 24);
-    static_assert (offsetof (dylib_command, cmd) == 0);
-    static_assert (offsetof (dylib_command, cmdsize) == 4);
-    static_assert (offsetof (dylib_command, dylib) == 8);
+     STATIC_ASSERT (sizeof (dylib_command) == 24);
+     STATIC_ASSERT (offsetof (dylib_command, cmd) == 0);
+     STATIC_ASSERT (offsetof (dylib_command, cmdsize) == 4);
+     STATIC_ASSERT (offsetof (dylib_command, dylib) == 8);
 #endif // CHECK
 
 
@@ -743,20 +745,20 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    static_assert (sizeof (entry_point_command) == sizeof (::entry_point_command));
-    static_assert (offsetof (entry_point_command, cmd) == offsetof (::entry_point_command, cmd));
-    static_assert (offsetof (entry_point_command, cmdsize) ==
+     STATIC_ASSERT (sizeof (entry_point_command) == sizeof (::entry_point_command));
+     STATIC_ASSERT (offsetof (entry_point_command, cmd) == offsetof (::entry_point_command, cmd));
+     STATIC_ASSERT (offsetof (entry_point_command, cmdsize) ==
                    offsetof (::entry_point_command, cmdsize));
-    static_assert (offsetof (entry_point_command, entryoff) ==
+     STATIC_ASSERT (offsetof (entry_point_command, entryoff) ==
                    offsetof (::entry_point_command, entryoff));
-    static_assert (offsetof (entry_point_command, stacksize) ==
+     STATIC_ASSERT (offsetof (entry_point_command, stacksize) ==
                    offsetof (::entry_point_command, stacksize));
 #else
-    static_assert (sizeof (entry_point_command) == 24);
-    static_assert (offsetof (entry_point_command, cmd) == 0);
-    static_assert (offsetof (entry_point_command, cmdsize) == 4);
-    static_assert (offsetof (entry_point_command, entryoff) == 8);
-    static_assert (offsetof (entry_point_command, stacksize) == 16);
+     STATIC_ASSERT (sizeof (entry_point_command) == 24);
+     STATIC_ASSERT (offsetof (entry_point_command, cmd) == 0);
+     STATIC_ASSERT (offsetof (entry_point_command, cmdsize) == 4);
+     STATIC_ASSERT (offsetof (entry_point_command, entryoff) == 8);
+     STATIC_ASSERT (offsetof (entry_point_command, stacksize) == 16);
 #endif // CHECK
 
 
@@ -796,33 +798,33 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    static_assert (sizeof (section_64) == sizeof (::section_64));
-    static_assert (offsetof (section_64, sectname) == offsetof (::section_64, sectname));
-    static_assert (offsetof (section_64, segname) == offsetof (::section_64, segname));
-    static_assert (offsetof (section_64, addr) == offsetof (::section_64, addr));
-    static_assert (offsetof (section_64, size) == offsetof (::section_64, size));
-    static_assert (offsetof (section_64, offset) == offsetof (::section_64, offset));
-    static_assert (offsetof (section_64, align) == offsetof (::section_64, align));
-    static_assert (offsetof (section_64, reloff) == offsetof (::section_64, reloff));
-    static_assert (offsetof (section_64, nreloc) == offsetof (::section_64, nreloc));
-    static_assert (offsetof (section_64, flags) == offsetof (::section_64, flags));
-    static_assert (offsetof (section_64, reserved1) == offsetof (::section_64, reserved1));
-    static_assert (offsetof (section_64, reserved2) == offsetof (::section_64, reserved2));
-    static_assert (offsetof (section_64, reserved3) == offsetof (::section_64, reserved3));
+     STATIC_ASSERT (sizeof (section_64) == sizeof (::section_64));
+     STATIC_ASSERT (offsetof (section_64, sectname) == offsetof (::section_64, sectname));
+     STATIC_ASSERT (offsetof (section_64, segname) == offsetof (::section_64, segname));
+     STATIC_ASSERT (offsetof (section_64, addr) == offsetof (::section_64, addr));
+     STATIC_ASSERT (offsetof (section_64, size) == offsetof (::section_64, size));
+     STATIC_ASSERT (offsetof (section_64, offset) == offsetof (::section_64, offset));
+     STATIC_ASSERT (offsetof (section_64, align) == offsetof (::section_64, align));
+     STATIC_ASSERT (offsetof (section_64, reloff) == offsetof (::section_64, reloff));
+     STATIC_ASSERT (offsetof (section_64, nreloc) == offsetof (::section_64, nreloc));
+     STATIC_ASSERT (offsetof (section_64, flags) == offsetof (::section_64, flags));
+     STATIC_ASSERT (offsetof (section_64, reserved1) == offsetof (::section_64, reserved1));
+     STATIC_ASSERT (offsetof (section_64, reserved2) == offsetof (::section_64, reserved2));
+     STATIC_ASSERT (offsetof (section_64, reserved3) == offsetof (::section_64, reserved3));
 #else
-    static_assert (sizeof (section_64) == 80);
-    static_assert (offsetof (section_64, sectname) == 0);
-    static_assert (offsetof (section_64, segname) == 16);
-    static_assert (offsetof (section_64, addr) == 32);
-    static_assert (offsetof (section_64, size) == 40);
-    static_assert (offsetof (section_64, offset) == 48);
-    static_assert (offsetof (section_64, align) == 52);
-    static_assert (offsetof (section_64, reloff) == 56);
-    static_assert (offsetof (section_64, nreloc) == 60);
-    static_assert (offsetof (section_64, flags) == 64);
-    static_assert (offsetof (section_64, reserved1) == 68);
-    static_assert (offsetof (section_64, reserved2) == 72);
-    static_assert (offsetof (section_64, reserved3) == 76);
+     STATIC_ASSERT (sizeof (section_64) == 80);
+     STATIC_ASSERT (offsetof (section_64, sectname) == 0);
+     STATIC_ASSERT (offsetof (section_64, segname) == 16);
+     STATIC_ASSERT (offsetof (section_64, addr) == 32);
+     STATIC_ASSERT (offsetof (section_64, size) == 40);
+     STATIC_ASSERT (offsetof (section_64, offset) == 48);
+     STATIC_ASSERT (offsetof (section_64, align) == 52);
+     STATIC_ASSERT (offsetof (section_64, reloff) == 56);
+     STATIC_ASSERT (offsetof (section_64, nreloc) == 60);
+     STATIC_ASSERT (offsetof (section_64, flags) == 64);
+     STATIC_ASSERT (offsetof (section_64, reserved1) == 68);
+     STATIC_ASSERT (offsetof (section_64, reserved2) == 72);
+     STATIC_ASSERT (offsetof (section_64, reserved3) == 76);
 #endif // CHECK
 
 
@@ -862,40 +864,40 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    static_assert (sizeof (segment_command_64) == sizeof (::segment_command_64));
-    static_assert (offsetof (segment_command_64, cmd) == offsetof (::segment_command_64, cmd));
-    static_assert (offsetof (segment_command_64, cmdsize) ==
+     STATIC_ASSERT (sizeof (segment_command_64) == sizeof (::segment_command_64));
+     STATIC_ASSERT (offsetof (segment_command_64, cmd) == offsetof (::segment_command_64, cmd));
+     STATIC_ASSERT (offsetof (segment_command_64, cmdsize) ==
                    offsetof (::segment_command_64, cmdsize));
-    static_assert (offsetof (segment_command_64, segname) ==
+     STATIC_ASSERT (offsetof (segment_command_64, segname) ==
                    offsetof (::segment_command_64, segname));
-    static_assert (offsetof (segment_command_64, vmaddr) ==
+     STATIC_ASSERT (offsetof (segment_command_64, vmaddr) ==
                    offsetof (::segment_command_64, vmaddr));
-    static_assert (offsetof (segment_command_64, vmsize) ==
+     STATIC_ASSERT (offsetof (segment_command_64, vmsize) ==
                    offsetof (::segment_command_64, vmsize));
-    static_assert (offsetof (segment_command_64, fileoff) ==
+     STATIC_ASSERT (offsetof (segment_command_64, fileoff) ==
                    offsetof (::segment_command_64, fileoff));
-    static_assert (offsetof (segment_command_64, filesize) ==
+     STATIC_ASSERT (offsetof (segment_command_64, filesize) ==
                    offsetof (::segment_command_64, filesize));
-    static_assert (offsetof (segment_command_64, maxprot) ==
+     STATIC_ASSERT (offsetof (segment_command_64, maxprot) ==
                    offsetof (::segment_command_64, maxprot));
-    static_assert (offsetof (segment_command_64, initprot) ==
+     STATIC_ASSERT (offsetof (segment_command_64, initprot) ==
                    offsetof (::segment_command_64, initprot));
-    static_assert (offsetof (segment_command_64, nsects) ==
+     STATIC_ASSERT (offsetof (segment_command_64, nsects) ==
                    offsetof (::segment_command_64, nsects));
-    static_assert (offsetof (segment_command_64, flags) == offsetof (::segment_command_64, flags));
+     STATIC_ASSERT (offsetof (segment_command_64, flags) == offsetof (::segment_command_64, flags));
 #else
-    static_assert (sizeof (segment_command_64) == 72);
-    static_assert (offsetof (segment_command_64, cmd) == 0);
-    static_assert (offsetof (segment_command_64, cmdsize) == 4);
-    static_assert (offsetof (segment_command_64, segname) == 8);
-    static_assert (offsetof (segment_command_64, vmaddr) == 24);
-    static_assert (offsetof (segment_command_64, vmsize) == 32);
-    static_assert (offsetof (segment_command_64, fileoff) == 40);
-    static_assert (offsetof (segment_command_64, filesize) == 48);
-    static_assert (offsetof (segment_command_64, maxprot) == 56);
-    static_assert (offsetof (segment_command_64, initprot) == 60);
-    static_assert (offsetof (segment_command_64, nsects) == 64);
-    static_assert (offsetof (segment_command_64, flags) == 68);
+     STATIC_ASSERT (sizeof (segment_command_64) == 72);
+     STATIC_ASSERT (offsetof (segment_command_64, cmd) == 0);
+     STATIC_ASSERT (offsetof (segment_command_64, cmdsize) == 4);
+     STATIC_ASSERT (offsetof (segment_command_64, segname) == 8);
+     STATIC_ASSERT (offsetof (segment_command_64, vmaddr) == 24);
+     STATIC_ASSERT (offsetof (segment_command_64, vmsize) == 32);
+     STATIC_ASSERT (offsetof (segment_command_64, fileoff) == 40);
+     STATIC_ASSERT (offsetof (segment_command_64, filesize) == 48);
+     STATIC_ASSERT (offsetof (segment_command_64, maxprot) == 56);
+     STATIC_ASSERT (offsetof (segment_command_64, initprot) == 60);
+     STATIC_ASSERT (offsetof (segment_command_64, nsects) == 64);
+     STATIC_ASSERT (offsetof (segment_command_64, flags) == 68);
 #endif // CHECK
 
 
@@ -912,21 +914,21 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    static_assert (sizeof (symtab_command) == sizeof (::symtab_command));
-    static_assert (offsetof (symtab_command, cmd) == offsetof (::symtab_command, cmd));
-    static_assert (offsetof (symtab_command, cmdsize) == offsetof (::symtab_command, cmdsize));
-    static_assert (offsetof (symtab_command, symoff) == offsetof (::symtab_command, symoff));
-    static_assert (offsetof (symtab_command, nsyms) == offsetof (::symtab_command, nsyms));
-    static_assert (offsetof (symtab_command, stroff) == offsetof (::symtab_command, stroff));
-    static_assert (offsetof (symtab_command, strsize) == offsetof (::symtab_command, strsize));
+     STATIC_ASSERT (sizeof (symtab_command) == sizeof (::symtab_command));
+     STATIC_ASSERT (offsetof (symtab_command, cmd) == offsetof (::symtab_command, cmd));
+     STATIC_ASSERT (offsetof (symtab_command, cmdsize) == offsetof (::symtab_command, cmdsize));
+     STATIC_ASSERT (offsetof (symtab_command, symoff) == offsetof (::symtab_command, symoff));
+     STATIC_ASSERT (offsetof (symtab_command, nsyms) == offsetof (::symtab_command, nsyms));
+     STATIC_ASSERT (offsetof (symtab_command, stroff) == offsetof (::symtab_command, stroff));
+     STATIC_ASSERT (offsetof (symtab_command, strsize) == offsetof (::symtab_command, strsize));
 #else
-    static_assert (sizeof (symtab_command) == 24);
-    static_assert (offsetof (symtab_command, cmd) == 0);
-    static_assert (offsetof (symtab_command, cmdsize) == 4);
-    static_assert (offsetof (symtab_command, symoff) == 8);
-    static_assert (offsetof (symtab_command, nsyms) == 12);
-    static_assert (offsetof (symtab_command, stroff) == 16);
-    static_assert (offsetof (symtab_command, strsize) == 20);
+     STATIC_ASSERT (sizeof (symtab_command) == 24);
+     STATIC_ASSERT (offsetof (symtab_command, cmd) == 0);
+     STATIC_ASSERT (offsetof (symtab_command, cmdsize) == 4);
+     STATIC_ASSERT (offsetof (symtab_command, symoff) == 8);
+     STATIC_ASSERT (offsetof (symtab_command, nsyms) == 12);
+     STATIC_ASSERT (offsetof (symtab_command, stroff) == 16);
+     STATIC_ASSERT (offsetof (symtab_command, strsize) == 20);
 #endif // CHECK
 
 
@@ -940,15 +942,15 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    static_assert (sizeof (uuid_command) == sizeof (::uuid_command));
-    static_assert (offsetof (uuid_command, cmd) == offsetof (::uuid_command, cmd));
-    static_assert (offsetof (uuid_command, cmdsize) == offsetof (::uuid_command, cmdsize));
-    static_assert (offsetof (uuid_command, uuid) == offsetof (::uuid_command, uuid));
+     STATIC_ASSERT (sizeof (uuid_command) == sizeof (::uuid_command));
+     STATIC_ASSERT (offsetof (uuid_command, cmd) == offsetof (::uuid_command, cmd));
+     STATIC_ASSERT (offsetof (uuid_command, cmdsize) == offsetof (::uuid_command, cmdsize));
+     STATIC_ASSERT (offsetof (uuid_command, uuid) == offsetof (::uuid_command, uuid));
 #else
-    static_assert (sizeof (uuid_command) == 24);
-    static_assert (offsetof (uuid_command, cmd) == 0);
-    static_assert (offsetof (uuid_command, cmdsize) == 4);
-    static_assert (offsetof (uuid_command, uuid) == 8);
+     STATIC_ASSERT (sizeof (uuid_command) == 24);
+     STATIC_ASSERT (offsetof (uuid_command, cmd) == 0);
+     STATIC_ASSERT (offsetof (uuid_command, cmdsize) == 4);
+     STATIC_ASSERT (offsetof (uuid_command, uuid) == 8);
 #endif // CHECK
 
 
@@ -1024,60 +1026,60 @@ namespace mach_o {
     constexpr std::uint32_t tool_ld = 3;
 
 #ifdef CHECK
-    static_assert (lc_segment == LC_SEGMENT);
-    static_assert (lc_symtab == LC_SYMTAB);
-    static_assert (lc_symseg == LC_SYMSEG);
-    static_assert (lc_thread == LC_THREAD);
-    static_assert (lc_unixthread == LC_UNIXTHREAD);
-    // static_assert (LC_LOADFVMLIB    0x6    // load a specified fixed VM shared library
-    // static_assert (LC_IDFVMLIB    0x7    // fixed VM shared library identification
-    // static_assert (LC_IDENT    0x8    // object identification info (obsolete)
-    // static_assert (LC_FVMFILE    0x9    // fixed VM file inclusion (internal use)
-    // static_assert (LC_PREPAGE      0xa     // prepage command (internal use)
-    // static_assert (LC_DYSYMTAB    0xb    // dynamic link-edit symbol table info
-    static_assert (lc_load_dylib == LC_LOAD_DYLIB);
-    // static_assert (LC_ID_DYLIB    0xd    // dynamically linked shared lib ident
-    // static_assert (LC_LOAD_DYLINKER 0xe    // load a dynamic linker
-    // static_assert (LC_ID_DYLINKER    0xf    // dynamic linker identification
-    static_assert (lc_prebound_dylib == LC_PREBOUND_DYLIB);
-    static_assert (lc_routines == LC_ROUTINES);
-    static_assert (lc_sub_framework == LC_SUB_FRAMEWORK);
-    // umbrella static_assert (LC_SUB_CLIENT    0x14    // sub client static_assert (LC_SUB_LIBRARY
-    // 0x15    // sub library static_assert (LC_TWOLEVEL_HINTS 0x16    // two-level namespace lookup
-    // hints
-    static_assert (lc_prebind_cksum == LC_PREBIND_CKSUM);
-    static_assert (lc_segment_64 == LC_SEGMENT_64);
-    static_assert (lc_routines_64 == LC_ROUTINES_64);
-    static_assert (lc_uuid == LC_UUID);
-    static_assert (lc_rpath == LC_RPATH);
-    static_assert (lc_code_signature == LC_CODE_SIGNATURE);
-    // static_assert (LC_SEGMENT_SPLIT_INFO 0x1e // local of info to split segments
-    // static_assert (LC_REEXPORT_DYLIB (0x1f | LC_REQ_DYLD) // load and re-export dylib
-    // static_assert (LC_LAZY_LOAD_DYLIB 0x20    // delay load of dylib until first use
-    // static_assert (LC_ENCRYPTION_INFO 0x21    // encrypted segment information
-    static_assert (lc_dyld_info == LC_DYLD_INFO);
-    // static_assert (LC_DYLD_INFO_ONLY (0x22|LC_REQ_DYLD)    // compressed dyld information only
-    // static_assert (LC_LOAD_UPWARD_DYLIB (0x23 | LC_REQ_DYLD) // load upward dylib
-    // static_assert (LC_VERSION_MIN_MACOSX 0x24   // build for MacOSX min OS version
-    // static_assert (LC_VERSION_MIN_IPHONEOS 0x25 // build for iPhoneOS min OS version
-    // static_assert (LC_FUNCTION_STARTS 0x26 // compressed table of function start addresses
-    // static_assert (LC_DYLD_ENVIRONMENT 0x27 // string for dyld to treat like environment variable
-    static_assert (lc_main == LC_MAIN);
-    static_assert (lc_data_in_code == LC_DATA_IN_CODE);
-    // static_assert (LC_SOURCE_VERSION 0x2A // source version used to build binary
-    // static_assert (LC_DYLIB_CODE_SIGN_DRS 0x2B // Code signing DRs copied from linked dylibs
-    // static_assert (LC_ENCRYPTION_INFO_64 0x2C // 64-bit encrypted segment information
-    // static_assert (LC_LINKER_OPTION 0x2D // linker options in MH_OBJECT files
-    // static_assert (LC_LINKER_OPTIMIZATION_HINT 0x2E // optimization hints in MH_OBJECT files
-    // static_assert (LC_VERSION_MIN_TVOS 0x2F // build for AppleTV min OS version
-    // static_assert (LC_VERSION_MIN_WATCHOS 0x30 // build for Watch min OS version
-    static_assert (lc_note == LC_NOTE);
-    static_assert (lc_build_version == LC_BUILD_VERSION);
-    static_assert (lc_dyld_exports_trie == LC_DYLD_EXPORTS_TRIE);
-    static_assert (lc_dyld_chained_fixups == LC_DYLD_CHAINED_FIXUPS);
+     STATIC_ASSERT (lc_segment == LC_SEGMENT);
+     STATIC_ASSERT (lc_symtab == LC_SYMTAB);
+     STATIC_ASSERT (lc_symseg == LC_SYMSEG);
+     STATIC_ASSERT (lc_thread == LC_THREAD);
+     STATIC_ASSERT (lc_unixthread == LC_UNIXTHREAD);
+    //  STATIC_ASSERT (LC_LOADFVMLIB    0x6    // load a specified fixed VM shared library
+    //  STATIC_ASSERT (LC_IDFVMLIB    0x7    // fixed VM shared library identification
+    //  STATIC_ASSERT (LC_IDENT    0x8    // object identification info (obsolete)
+    //  STATIC_ASSERT (LC_FVMFILE    0x9    // fixed VM file inclusion (internal use)
+    //  STATIC_ASSERT (LC_PREPAGE      0xa     // prepage command (internal use)
+    //  STATIC_ASSERT (LC_DYSYMTAB    0xb    // dynamic link-edit symbol table info
+     STATIC_ASSERT (lc_load_dylib == LC_LOAD_DYLIB);
+    //  STATIC_ASSERT (LC_ID_DYLIB    0xd    // dynamically linked shared lib ident
+    //  STATIC_ASSERT (LC_LOAD_DYLINKER 0xe    // load a dynamic linker
+    //  STATIC_ASSERT (LC_ID_DYLINKER    0xf    // dynamic linker identification
+     STATIC_ASSERT (lc_prebound_dylib == LC_PREBOUND_DYLIB);
+     STATIC_ASSERT (lc_routines == LC_ROUTINES);
+     STATIC_ASSERT (lc_sub_framework == LC_SUB_FRAMEWORK);
+    // umbrella  STATIC_ASSERT (LC_SUB_CLIENT    0x14    // sub client
+    // STATIC_ASSERT (LC_SUB_LIBRARY 0x15    // sub library
+    // STATIC_ASSERT (LC_TWOLEVEL_HINTS 0x16    // two-level namespace lookup hints
+     STATIC_ASSERT (lc_prebind_cksum == LC_PREBIND_CKSUM);
+     STATIC_ASSERT (lc_segment_64 == LC_SEGMENT_64);
+     STATIC_ASSERT (lc_routines_64 == LC_ROUTINES_64);
+     STATIC_ASSERT (lc_uuid == LC_UUID);
+     STATIC_ASSERT (lc_rpath == LC_RPATH);
+     STATIC_ASSERT (lc_code_signature == LC_CODE_SIGNATURE);
+    //  STATIC_ASSERT (LC_SEGMENT_SPLIT_INFO 0x1e // local of info to split segments
+    //  STATIC_ASSERT (LC_REEXPORT_DYLIB (0x1f | LC_REQ_DYLD) // load and re-export dylib
+    //  STATIC_ASSERT (LC_LAZY_LOAD_DYLIB 0x20    // delay load of dylib until first use
+    //  STATIC_ASSERT (LC_ENCRYPTION_INFO 0x21    // encrypted segment information
+     STATIC_ASSERT (lc_dyld_info == LC_DYLD_INFO);
+    //  STATIC_ASSERT (LC_DYLD_INFO_ONLY (0x22|LC_REQ_DYLD)    // compressed dyld information only
+    //  STATIC_ASSERT (LC_LOAD_UPWARD_DYLIB (0x23 | LC_REQ_DYLD) // load upward dylib
+    //  STATIC_ASSERT (LC_VERSION_MIN_MACOSX 0x24   // build for MacOSX min OS version
+    //  STATIC_ASSERT (LC_VERSION_MIN_IPHONEOS 0x25 // build for iPhoneOS min OS version
+    //  STATIC_ASSERT (LC_FUNCTION_STARTS 0x26 // compressed table of function start addresses
+    //  STATIC_ASSERT (LC_DYLD_ENVIRONMENT 0x27 // string for dyld to treat like environment variable
+     STATIC_ASSERT (lc_main == LC_MAIN);
+     STATIC_ASSERT (lc_data_in_code == LC_DATA_IN_CODE);
+    //  STATIC_ASSERT (LC_SOURCE_VERSION 0x2A // source version used to build binary
+    //  STATIC_ASSERT (LC_DYLIB_CODE_SIGN_DRS 0x2B // Code signing DRs copied from linked dylibs
+    //  STATIC_ASSERT (LC_ENCRYPTION_INFO_64 0x2C // 64-bit encrypted segment information
+    //  STATIC_ASSERT (LC_LINKER_OPTION 0x2D // linker options in MH_OBJECT files
+    //  STATIC_ASSERT (LC_LINKER_OPTIMIZATION_HINT 0x2E // optimization hints in MH_OBJECT files
+    //  STATIC_ASSERT (LC_VERSION_MIN_TVOS 0x2F // build for AppleTV min OS version
+    //  STATIC_ASSERT (LC_VERSION_MIN_WATCHOS 0x30 // build for Watch min OS version
+     STATIC_ASSERT (lc_note == LC_NOTE);
+     STATIC_ASSERT (lc_build_version == LC_BUILD_VERSION);
+     STATIC_ASSERT (lc_dyld_exports_trie == LC_DYLD_EXPORTS_TRIE);
+     STATIC_ASSERT (lc_dyld_chained_fixups == LC_DYLD_CHAINED_FIXUPS);
 
-    static_assert (platform_macos == PLATFORM_MACOS);
-    static_assert (tool_ld == TOOL_LD);
+     STATIC_ASSERT (platform_macos == PLATFORM_MACOS);
+     STATIC_ASSERT (tool_ld == TOOL_LD);
 #endif // CHECK
 
 
