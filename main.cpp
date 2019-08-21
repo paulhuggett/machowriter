@@ -4,7 +4,12 @@
 #include <numeric>
 
 #include <fcntl.h>
-#include <unistd.h>
+
+#ifdef _WIN32
+#    include <io.h>
+#else
+#    include <unistd.h>
+#endif
 
 #include "command.hpp"
 #include "lc_build_version.hpp"
@@ -169,7 +174,11 @@ int main (int argc, char const * argv[]) {
         std::exit (EXIT_FAILURE);
     }
 
+#ifdef _WIN32
+    int const fd = _open (argv[1], O_RDWR | O_CREAT | O_TRUNC);
+#else
     int const fd = open (argv[1], O_RDWR | O_CREAT | O_TRUNC, S_IRWXU | S_IRWXG | S_IRWXO);
+#endif
     if (fd == -1) {
         perror ("open");
     }

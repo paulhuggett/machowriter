@@ -38,6 +38,7 @@ set_target_properties (machowriter PROPERTIES
 )
 if (MSVC)
     target_compile_options (machowriter PRIVATE /W4)
+	target_compile_definitions (machowriter PRIVATE _CRT_SECURE_NO_WARNINGS _CRT_NONSTDC_NO_WARNINGS)
 elseif (CMAKE_COMPILER_IS_GNUCXX)
     target_compile_options (machowriter PRIVATE -Wall -pedantic)
 elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang")

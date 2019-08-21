@@ -1,6 +1,10 @@
 #include "lc_dysymtab.hpp"
 
-#include <unistd.h>
+#ifdef _WIN32
+#    include <io.h>
+#else
+#    include <unistd.h>
+#endif
 
 #include "mach-o.hpp"
 
