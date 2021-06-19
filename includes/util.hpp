@@ -45,7 +45,8 @@ constexpr T type_min () noexcept {
 template <class T, class U>
 constexpr T narrow_cast (U && u) noexcept {
     assert (u <= type_max<T> ());
-    bool const a = (std::is_unsigned<T>::value == std::is_unsigned<U>::value && u >= type_min<T> ());
+    bool const a =
+        (std::is_unsigned<T>::value == std::is_unsigned<U>::value && u >= type_min<T> ());
     bool const b = (!std::is_unsigned<T>::value || (std::is_unsigned<T>::value && u >= 0));
     assert (a || b);
     return static_cast<T> (std::forward<U> (u));

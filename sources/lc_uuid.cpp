@@ -28,7 +28,7 @@ std::uint64_t lc_uuid::write_command (int fd, std::uint64_t offset) {
     mach_o::uuid_command cmd;
     cmd.cmd = mach_o::lc_uuid;
     cmd.cmdsize = sizeof (cmd);
-    std::generate (cmd.uuid, cmd.uuid + array_elements (cmd.uuid), []() {
+    std::generate (cmd.uuid, cmd.uuid + array_elements (cmd.uuid), [] () {
         static std::random_device device;
         static std::mt19937_64 generator (device ());
         static std::uniform_int_distribution<std::uint8_t> distribution;

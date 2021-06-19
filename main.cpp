@@ -179,7 +179,7 @@ int main (int argc, char const * argv[]) {
     if (fd == -1) {
         perror ("open");
     }
-    auto const scope = make_scope_guard ([fd]() { ::close (fd); });
+    auto const scope = make_scope_guard ([fd] () { ::close (fd); });
 
     auto text_segment = build_text ();
     lc_segment::section_value const & text_section = (*text_segment)[0];
@@ -210,11 +210,11 @@ int main (int argc, char const * argv[]) {
     commands.emplace_back (std::make_unique<lc_load_dylib> ("/usr/lib/libSystem.B.dylib"));
     assert (commands.size () <= reserve);
 
-    std::size_t const total_command_size = std::accumulate (
-        std::begin (commands), std::end (commands), std::size_t{0},
-        [](std::size_t acc, std::unique_ptr<command> const & v) noexcept {
-            return acc + v->size_bytes ();
-        });
+    std::size_t const total_command_size =
+        std::accumulate (std::begin (commands), std::end (commands), std::size_t{0},
+                         [] (std::size_t acc, std::unique_ptr<command> const & v) noexcept {
+                             return acc + v->size_bytes ();
+                         });
     assert (total_command_size <= type_max<std::uint32_t> ());
 
     mach_o::mach_header_64 header;

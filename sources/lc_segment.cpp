@@ -57,11 +57,10 @@ std::uint32_t lc_segment::size_bytes () const noexcept {
 // payload_size
 // ~~~~~~~~~~~~
 std::size_t lc_segment::payload_size () const noexcept {
-    return std::accumulate (
-        std::begin (sections_), std::end (sections_), std::size_t{0},
-        [](std::size_t acc, section_value const & sv) noexcept {
-            return acc + sv.contents_size ();
-        });
+    return std::accumulate (std::begin (sections_), std::end (sections_), std::size_t{0},
+                            [] (std::size_t acc, section_value const & sv) noexcept {
+                                return acc + sv.contents_size ();
+                            });
 }
 
 // write_command
