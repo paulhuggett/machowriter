@@ -36,13 +36,13 @@ namespace {
 
 
     std::unique_ptr<lc_segment> build_page_zero () {
-        return std::unique_ptr<lc_segment> {new lc_segment (
+        return std::make_unique<lc_segment> (
             mach_o::seg_pagezero,
             position (0x0, std::uint64_t{1} << 32), // memory address and size of this segment
             mach_o::vm_prot_none,                   // maximum VM protection
             mach_o::vm_prot_none,                   // initial VM protection
             0x00                                    // flags
-        )};
+        );
     }
 
 
@@ -52,13 +52,13 @@ namespace {
         // 64-bit task's address space.  If the 64-bit segment has sections then section_64
         // structures directly follow the 64-bit segment command and their size is reflected in
         // cmdsize.
-        auto text_segment = std::unique_ptr<lc_segment> {new lc_text_segment (
+        auto text_segment = std::make_unique<lc_segment> (
             mach_o::seg_text,
             position (0x0000000100000000, 0x0), // memory address and size of this segment
             mach_o::vm_prot_all,                // maximum VM protection
             mach_o::vm_prot_execute | mach_o::vm_prot_read, // initial VM protection
             0x00                                            // flags
-        )};
+        );
 
         // 0000000000000000    pushq    %rbp
         // 0000000000000001    movq    %rsp, %rbp
@@ -89,28 +89,28 @@ namespace {
 
 #ifdef BUILD_DATA_COMMAND
     std::unique_ptr<lc_segment> build_data () {
-        auto data_segment = std::unique_ptr<lc_segment> {new lc_segment (
+        auto data_segment = std::make_unique<lc_segment> (
             mach_o::seg_data,
-            position (0x0000000200000000, 0x0),         // memory address and size of this segment
-            mach_o::vm_prot_all,                         // maximum VM protection
+            position (0x0000000200000000, 0x0),           // memory address and size of this segment
+            mach_o::vm_prot_all,                          // maximum VM protection
             mach_o::vm_prot_write | mach_o::vm_prot_read, // initial VM protection
-            0x00                                        // flags
-        )};
+            0x00                                          // flags
+        );
 
         static constexpr std::uint8_t data_section_contents[4096] = {
             0x0,
         };
         data_segment->add_section (
             {
-                mach_o::sect_data,   // name of this section
-                mach_o::seg_data,    // segment this section goes in
+                mach_o::sect_data,  // name of this section
+                mach_o::seg_data,   // segment this section goes in
                 0x0000000200000000, // memory address of this section
                 0,                  // size in bytes of this section (patched up later)
                 0,                  // file offset of this section (patched up later)
                 4,                  // section alignment (power of 2)
                 0,                  // file offset of relocation entries
                 0,                  // number of relocation entries
-                mach_o::s_regular,   // 0x80000400, // flags (section type and attributes)
+                mach_o::s_regular,  // 0x80000400, // flags (section type and attributes)
             },
             lc_segment::contents_range (data_section_contents,
                                         data_section_contents + sizeof (data_section_contents)));
@@ -119,13 +119,13 @@ namespace {
 #endif // BUILD_DATA_COMMAND
 
     std::unique_ptr<lc_segment> build_linkedit () {
-        auto linkedit_segment = std::unique_ptr<lc_segment> {new lc_segment (
+        auto linkedit_segment = std::make_unique<lc_segment> (
             mach_o::seg_linkedit,
             position (0x0000000200001000, 0x0), // memory address and size of this segment
             mach_o::vm_prot_all,                // maximum VM protection
             mach_o::vm_prot_read,               // initial VM protection
             0x00                                // flags
-        )};
+        );
 
         // struct relocation_info {
         //    int32_t r_address;         /* offset in the section to what is being
@@ -196,18 +196,18 @@ int main (int argc, char const * argv[]) {
 #endif
     commands.emplace_back (build_linkedit ()); // must be last and not writable.
 
-    commands.emplace_back (new lc_dyld_info_only);
-    commands.emplace_back (new lc_symtab);
-    commands.emplace_back (new lc_dysymtab);
-    commands.emplace_back (new lc_load_dylinker);
+    commands.emplace_back (std::make_unique<lc_dyld_info_only> ());
+    commands.emplace_back (std::make_unique<lc_symtab> ());
+    commands.emplace_back (std::make_unique<lc_dysymtab> ());
+    commands.emplace_back (std::make_unique<lc_load_dylinker> ());
 #ifdef BUILD_UUID_COMMAND
-    commands.emplace_back (new lc_uuid);
+    commands.emplace_back (std::make_unique<lc_uuid> ());
 #endif
 #ifdef BUILD_VERSION_COMMAND
-    commands.emplace_back (new lc_build_version);
+    commands.emplace_back (std::make_unique<lc_build_version> ());
 #endif
-    commands.emplace_back (new lc_main (&text_section));
-    commands.emplace_back (new lc_load_dylib ("/usr/lib/libSystem.B.dylib"));
+    commands.emplace_back (std::make_unique<lc_main> (&text_section));
+    commands.emplace_back (std::make_unique<lc_load_dylib> ("/usr/lib/libSystem.B.dylib"));
     assert (commands.size () <= reserve);
 
     std::size_t const total_command_size = std::accumulate (

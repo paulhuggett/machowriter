@@ -4,6 +4,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <cstring>
+#include <type_traits>
 
 #if __APPLE__
 #    include <mach-o/loader.h>
@@ -55,22 +56,23 @@ namespace mach_o {
     };
 
 #ifdef CHECK
-    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::any) == CPU_TYPE_ANY);
-     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::vax) == CPU_TYPE_VAX);
-     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::mc680x0) == CPU_TYPE_MC680x0);
-     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::x86) == CPU_TYPE_X86);
-     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::i386) == CPU_TYPE_I386);
-     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::x86_64) == CPU_TYPE_X86_64);
-     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::mc98000) == CPU_TYPE_MC98000);
-     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::hppa) == CPU_TYPE_HPPA);
-     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::arm) == CPU_TYPE_ARM);
-     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::arm64) == CPU_TYPE_ARM64);
-     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::arm64_32) == CPU_TYPE_ARM64_32);
-     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::mc88000) == CPU_TYPE_MC88000);
-     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::sparc) == CPU_TYPE_SPARC);
-     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::i860) == CPU_TYPE_I860);
-     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::powerpc) == CPU_TYPE_POWERPC);
-     STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::powerpc64) == CPU_TYPE_POWERPC64);
+    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::any) ==
+                   static_cast<std::make_unsigned_t<decltype (CPU_TYPE_ANY)>> (CPU_TYPE_ANY));
+    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::vax) == CPU_TYPE_VAX);
+    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::mc680x0) == CPU_TYPE_MC680x0);
+    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::x86) == CPU_TYPE_X86);
+    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::i386) == CPU_TYPE_I386);
+    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::x86_64) == CPU_TYPE_X86_64);
+    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::mc98000) == CPU_TYPE_MC98000);
+    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::hppa) == CPU_TYPE_HPPA);
+    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::arm) == CPU_TYPE_ARM);
+    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::arm64) == CPU_TYPE_ARM64);
+    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::arm64_32) == CPU_TYPE_ARM64_32);
+    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::mc88000) == CPU_TYPE_MC88000);
+    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::sparc) == CPU_TYPE_SPARC);
+    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::i860) == CPU_TYPE_I860);
+    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::powerpc) == CPU_TYPE_POWERPC);
+    STATIC_ASSERT (static_cast<std::uint32_t> (cpu_type::powerpc64) == CPU_TYPE_POWERPC64);
 #endif // CHECK
 
     enum class cpu_subtype : std::uint32_t {
@@ -87,6 +89,7 @@ namespace mach_o {
      STATIC_ASSERT (static_cast<std::uint32_t> (cpu_subtype::x86_arch1) == CPU_SUBTYPE_X86_ARCH1);
      STATIC_ASSERT (static_cast<std::uint32_t> (cpu_subtype::x86_64_h) == CPU_SUBTYPE_X86_64_H);
 #endif // CHECK
+
     /*
      * The layout of the file depends on the filetype.  For all but the MH_OBJECT
      * file type the segments are padded out and aligned on a segment alignment
@@ -108,19 +111,19 @@ namespace mach_o {
      * A core file is in MH_CORE format and can be any in an arbritray legal
      * Mach-O file.
      */
-    enum class filetype_t : std::uint32_t {
-        object = 0x1,      // relocatable object file
-        execute = 0x2,     // demand paged executable file
-        fvmlib = 0x3,      // fixed VM shared library file
-        core = 0x4,        // core file
-        preload = 0x5,     // preloaded executable file
-        dylib = 0x6,       // dynamically bound shared library
-        dylinker = 0x7,    // dynamic link editor
-        bundle = 0x8,      // dynamically bound bundle file
-        dylib_stub = 0x9,  // shared library stub for static linking only, no section contents
-        dsym = 0xa,        // companion file with only debug sections
-        kext_bundle = 0xb, // x86_64 kexts
-    };
+     enum class filetype_t : std::uint32_t {
+         object = 0x1,      ///< Relocatable object file
+         execute = 0x2,     ///< Demand paged executable file
+         fvmlib = 0x3,      ///< Fixed VM shared library file
+         core = 0x4,        ///< Core file
+         preload = 0x5,     ///< Preloaded executable file
+         dylib = 0x6,       ///< Dynamically bound shared library
+         dylinker = 0x7,    ///< Dynamic link editor
+         bundle = 0x8,      ///< Dynamically bound bundle file
+         dylib_stub = 0x9,  ///< Shared library stub for static linking only, no section contents
+         dsym = 0xa,        ///< Companion file with only debug sections
+         kext_bundle = 0xb, ///< x86_64 kexts
+     };
 
 #ifdef CHECK
      STATIC_ASSERT (static_cast<std::uint32_t> (filetype_t::object) == MH_OBJECT);
@@ -242,13 +245,13 @@ namespace mach_o {
     // The 64-bit mach header appears at the very beginning of object files for
     // 64-bit architectures.
     struct mach_header_64 {
-        std::uint32_t magic;      // mach magic number identifier
-        cpu_type cputype;         // cpu specifier
-        cpu_subtype cpusubtype;   // machine specifier
-        filetype_t filetype;      // type of file
-        std::uint32_t ncmds;      // number of load commands
-        std::uint32_t sizeofcmds; // the size of all the load commands
-        std::uint32_t flags;      // flags
+        std::uint32_t magic;      ///< Mach magic number identifier
+        cpu_type cputype;         ///< CPU specifier
+        cpu_subtype cpusubtype;   ///< Machine specifier
+        filetype_t filetype;      ///< Type of file
+        std::uint32_t ncmds;      ///< Number of load commands
+        std::uint32_t sizeofcmds; ///< The size of all the load commands
+        std::uint32_t flags;      ///< Flags
         std::uint32_t reserved;   // reserved
     };
 

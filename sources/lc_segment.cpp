@@ -139,7 +139,7 @@ std::size_t lc_segment::section_value::contents_size () const noexcept {
     auto const resl = std::distance (static_cast<std::uint8_t const *> (contents_.first),
                                      static_cast<std::uint8_t const *> (contents_.second));
     assert (resl >= 0);
-    return narrow_cast<std::size_t> (static_cast<std::make_unsigned<decltype (resl)>::type> (resl));
+    return narrow_cast<std::size_t> (static_cast<std::make_unsigned_t<decltype (resl)>> (resl));
 }
 
 

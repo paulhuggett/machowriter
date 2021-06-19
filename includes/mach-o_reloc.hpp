@@ -16,16 +16,16 @@ namespace mach_o {
     // in an arbitrary number of sections not just the three sections (text, data and bss) in
     // a 4.3BSD file. Also the last 4 bits have had the r_type tag added to them.
     struct relocation_info {
-        std::int32_t r_address; // offset in the section to what is being relocated
+        std::int32_t r_address; ///< offset in the section to what is being relocated
         std::uint32_t
-            r_symbolnum : 24, // symbol index if r_extern == 1 or section ordinal if r_extern == 0
-            r_pcrel : 1,      // was relocated pc relative already
-            r_length : 2,     // 0=byte, 1=word, 2=long, 3=quad
-            r_extern : 1,     // does not include value of sym referenced
-            r_type : 4;       // if not 0, machine specific relocation type
+            r_symbolnum : 24, ///< Symbol index if r_extern == 1 or section ordinal if r_extern == 0
+            r_pcrel : 1,      ///< Was relocated pc relative already?
+            r_length : 2,     ///< 0=byte, 1=word, 2=long, 3=quad
+            r_extern : 1,     ///< Does not include value of sym referenced
+            r_type : 4;       ///< If not 0, machine specific relocation type
     };
 
-    constexpr std::uint32_t r_abs = 0; // absolute relocation type for Mach-O files
+    constexpr std::uint32_t r_abs = 0; /// Absolute relocation type for Mach-O files
 
 } // end namespace mach_o
 

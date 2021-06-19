@@ -33,7 +33,8 @@ add_executable (machowriter
 )
 target_include_directories (machowriter PRIVATE ./includes)
 set_target_properties (machowriter PROPERTIES
-    CXX_STANDARD 11
+    CXX_STANDARD 14
+    CXX_STANDARD_REQUIRED Yes
     CXX_EXTENSIONS Off
 )
 if (MSVC)
@@ -46,6 +47,7 @@ elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
         -Weverything
         -Wno-c++98-compat
         -Wno-c++98-compat-pedantic
+        -Wno-exit-time-destructors
         -Wno-padded
     )
 else ()
